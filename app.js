@@ -15,6 +15,7 @@ const gridDimensionButton = document.querySelector("button.prompt-dimension");
 gridDimensionButton.addEventListener("click", constructGrid);
 
 const cellGrid = document.querySelector("main.cell-grid");
+const MAX_DIMENSION = 100;
 
 function constructGrid () {
     let dimension = parseInt(prompt("Grid dimension:"));
@@ -22,6 +23,10 @@ function constructGrid () {
     if (isNaN(dimension)) {
 	dimension = 16;
     }
+
+    // Keep the user-specified dimension at or below MAX_DIMENSION
+    // (usually 100, as recommended in the project walkthough)
+    dimension = Math.min(MAX_DIMENSION, dimension);
 
     const cells = constructGridInternal(dimension);
     cellGrid.style.gridTemplateColumns = `repeat(${dimension}, 1fr`;
