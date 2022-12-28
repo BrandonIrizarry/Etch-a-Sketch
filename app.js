@@ -4,8 +4,9 @@ const createCell = () => {
     return cell;
 };
 
-const cells = Array.from({length: 16}, createCell);
-
+const cellGridDimension = 4;
+const cellGridArea = cellGridDimension * cellGridDimension;
+const cells = Array.from({length: cellGridArea}, createCell);
 const cellGrid = document.querySelector("main.cell-grid");
 
 cells.forEach(cell => cellGrid.appendChild(cell));
