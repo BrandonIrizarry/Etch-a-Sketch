@@ -13,3 +13,10 @@ const constructGridInternal = dimension => {
 };
 
 constructGridInternal(16);
+
+const gridDimensionButton = document.querySelector("button.prompt-dimension");
+gridDimensionButton.addEventListener("click", constructGrid);
+
+function constructGrid () {
+
+}
