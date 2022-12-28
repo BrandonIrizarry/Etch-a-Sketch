@@ -18,5 +18,7 @@ const gridDimensionButton = document.querySelector("button.prompt-dimension");
 gridDimensionButton.addEventListener("click", constructGrid);
 
 function constructGrid () {
+    const dimension = prompt("Grid dimension:") ?? 16;
 
+    console.log(dimension);
 }
