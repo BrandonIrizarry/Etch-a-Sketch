@@ -18,3 +18,11 @@ body {
 .cell:hover {
     background-color: black;
 }
+
+.prompt-dimension {
+    flex: 1;
+}
+
+header {
+    display: flex;
+}
