@@ -1,0 +1,5 @@
+* [[https://stackoverflow.com/questions/65664522/why-are-my-css-grid-items-stacking-on-top-of-each-other][Why are my CSS Grid items stacking on top of each other?]]    :stackoverflow:
+
+I initially had "cell cell cell..." for my template areas, but that
+unfortunately (for this case) merges them.
+

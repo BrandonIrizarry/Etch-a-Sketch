@@ -1,8 +1,3 @@
-/* https://stackoverflow.com/questions/65664522/why-are-my-css-grid-items-stacking-on-top-of-each-other
-
-I initially had "cell cell cell..." for my template areas, but that
-unfortunately (for this case) merges them. */
-
 * { box-sizing: border-box; }
 
 body {
