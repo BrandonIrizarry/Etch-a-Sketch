@@ -3,3 +3,59 @@
 I initially had "cell cell cell..." for my template areas, but that
 unfortunately (for this case) merges them.
 
+* Design Notes
+** Features
++ Clicking should toggle whether the pen paints. Some of the projects
+  paint regardless, which can lead to a slightly frustrating
+  experience.
+
++ A lot of the projects have the person's Github account name, e.g., 
+
+"Built and designed by Silinde87 | ⚙"
+
+But the gear is the Github icon, linking to that person's Github
+profile.
+
++ A great many projects use sliders to determine the number of cells
+  (instead of the prompt, say).
+
++ 100 x 100 might still be too intensive, maybe 60 x 60 is good.
+
++ Several implement a color picker, to select the pen's default
+  painting color (letting alone a "psychedelic mode"). This should be
+  "canon" for this project.
+
++ Most projects use a "clear" button to reset the canvas to a blank state.
+
++ An erase-button is a feature of some of the projects. A good summary
+  of features might be:
+  1. Pick the current color.
+
+  2. Pick the current /background/ color. 
+
+  3. A color /fill/, like the paint bucket in MS Paint. This sounds
+     like an interesting technical challenge.
+
+  4. A color /grabber/, like the eyedropper in Firefox. This would set
+     the current foreground or background color. As a hard problem, we
+     could store the current picked color somewhere, then when we pick
+     a foreground or background color, we'll have the option of
+     selecting this buffered color, in addition to the color picker.
+
+  5. An eraser: reset the current cell's color to whatever the
+     background color is.
+
+  6. The rainbow/"psychedelic" feature. This is mainly because the
+     project description itself suggests it.
+
+  7. Shading/lightening. This looks like it has something to do with
+     altering HSL values of the current color.
+
+  8. A... slider? Not sure. Scaling doesn't necessarily copy the
+     current image? If it did, a slider could be a good feature.
+
++ The buttons should really have a square dimension to them; and white
+  should be the default background color. One project even rounds the
+  corners of the cells slightly.
+
++ Also... some people's Githubs have README.md "splash" pages. 
