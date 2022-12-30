@@ -23,7 +23,14 @@ body {
 }
 
 .prompt-dimension {
+    display: flex;
+    background-color: red;
+    height: 20px;
+}
+
+.set-dimension {
     flex: 1;
+    border: 1px solid black;
 }
 
 header {
