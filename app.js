@@ -45,7 +45,7 @@ function constructGrid (index) {
 
     const cells = constructGridInternal(dimension);
     cellGrid.style.gridTemplateColumns = `repeat(${dimension}, 1fr`;
-    [...document.querySelectorAll(".cell")].map(cell => cell.remove());
+    [...document.querySelectorAll(".cell")].forEach(cell => cell.remove());
     cells.forEach(cell => cellGrid.appendChild(cell));
 }
 
