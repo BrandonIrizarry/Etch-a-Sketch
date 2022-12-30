@@ -11,14 +11,22 @@ const constructGridInternal = dimension => {
     return cells;
 };
 
-const gridDimensionButton = document.querySelector("button.prompt-dimension");
-gridDimensionButton.addEventListener("click", constructGrid);
+const sliderButtons = [...document.querySelectorAll(".set-dimension")];
+let previousSliderButtonIndex = "16";
+
+sliderButtons.forEach(sliderButton => sliderButton.addEventListener("mouseover", () => {
+    constructGrid(sliderButton.dataset.index);
+
+    sliderButtons[previousSliderButtonIndex - 1].style.backgroundColor = "red";
+    sliderButton.style.backgroundColor = "black";
+    previousSliderButtonIndex = sliderButton.dataset.index;
+}));
 
 const cellGrid = document.querySelector("main.cell-grid");
 const MAX_DIMENSION = 100;
 
-function constructGrid () {
-    let dimension = parseInt(prompt("Grid dimension:"));
+function constructGrid (index) {
+    let dimension = parseInt(index);
 
     if (isNaN(dimension)) {
 	dimension = 16;
