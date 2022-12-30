@@ -32,17 +32,19 @@ sliderButtons.forEach(sliderButton => sliderButton.addEventListener("mouseover",
 const cellGrid = document.querySelector("main.cell-grid");
 const MAX_DIMENSION = 100;
 
-function constructGrid (index) {
-    let dimension = index;
+function constructGrid (dimension) {
+    // First, remove the existing cells
+    [...document.querySelectorAll(".cell")].forEach(cell => cell.remove());
 
     // Keep the user-specified dimension at or below MAX_DIMENSION
     // (usually 100, as recommended in the project walkthough)
     dimension = Math.min(MAX_DIMENSION, dimension);
 
     const cells = constructGridInternal(dimension);
-    cellGrid.style.gridTemplateColumns = `repeat(${dimension}, 1fr`;
-    [...document.querySelectorAll(".cell")].forEach(cell => cell.remove());
     cells.forEach(cell => cellGrid.appendChild(cell));
+
+    // Adjust 'grid-template-columns' CSS property to match given dimension
+    cellGrid.style.gridTemplateColumns = `repeat(${dimension}, 1fr`;
 }
 
 // Define a grid right away
