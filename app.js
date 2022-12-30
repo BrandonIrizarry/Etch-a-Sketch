@@ -12,6 +12,11 @@ const constructGridInternal = dimension => {
 };
 
 const cellGrid = document.querySelector("main.cell-grid");
+let paintOn = true;
+cellGrid.addEventListener("click", event => {
+    paintOn = !paintOn;
+    if (paintOn) event.target.style.backgroundColor = "black";
+});
 const MAX_DIMENSION = 100;
 
 function constructGrid (dimension) {
@@ -25,7 +30,9 @@ function constructGrid (dimension) {
     const cells = constructGridInternal(dimension);
     cells.forEach(cell => {
 	cellGrid.appendChild(cell);
-	cell.addEventListener("mouseover", event => event.target.style.backgroundColor = "black");
+	cell.addEventListener("mouseover", event => {
+	    if (paintOn) event.target.style.backgroundColor = "black";
+	});
     });
 
     // Adjust 'grid-template-columns' CSS property to match given dimension
