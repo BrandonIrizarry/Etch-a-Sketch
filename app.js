@@ -23,7 +23,10 @@ function constructGrid (dimension) {
     dimension = Math.min(MAX_DIMENSION, dimension);
 
     const cells = constructGridInternal(dimension);
-    cells.forEach(cell => cellGrid.appendChild(cell));
+    cells.forEach(cell => {
+	cellGrid.appendChild(cell);
+	cell.addEventListener("mouseover", event => event.target.style.backgroundColor = "black");
+    });
 
     // Adjust 'grid-template-columns' CSS property to match given dimension
     cellGrid.style.gridTemplateColumns = `repeat(${dimension}, 1fr`;
