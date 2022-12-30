@@ -59,3 +59,18 @@ profile.
   corners of the cells slightly.
 
 + Also... some people's Githubs have README.md "splash" pages. 
+* Checklist [0/7]
++ [ ] Enable for mobile.
+  - What should be the default behavior? Dragging with one's finger
+    should be a mouseover. Perhaps the finger-tap-as-click works here
+    still.
++ [ ] Add some usage instructions in an aside div.
+  - Do for both desktop and mobile. These would appear in an aside div.
++ [ ] Add a clear-all feature/button.
++ [ ] Maybe export to BMP?
++ [ ] For desktop, enable some keyboard shortcuts.
+  - For example, left and right arrows can adjust the grid size.
++ [ ] Be sure to add your tag at the bottom of the page.
++ [ ] Save the existing image when moving from smaller to larger dimensions?
+  - When going the other way (larger to smaller), allow for
+    truncation.
