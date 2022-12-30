@@ -12,15 +12,22 @@ const constructGridInternal = dimension => {
 };
 
 const sliderButtons = [...document.querySelectorAll(".set-dimension")];
-let previousSliderButtonIndex = "16";
+const START_INDEX = 16;
+let previousSliderButtonIndex = START_INDEX;
+const initialButton = sliderButtons[START_INDEX];
 
-sliderButtons.forEach(sliderButton => sliderButton.addEventListener("mouseover", () => {
-    constructGrid(sliderButton.dataset.index);
+function defineGrid (event) {
+    const sliderButton = event.target;
+    const index = parseInt(sliderButton.dataset.index);
+    constructGrid(index);
 
     sliderButtons[previousSliderButtonIndex - 1].style.backgroundColor = "red";
     sliderButton.style.backgroundColor = "black";
     previousSliderButtonIndex = sliderButton.dataset.index;
-}));
+}
+
+
+sliderButtons.forEach(sliderButton => sliderButton.addEventListener("mouseover", defineGrid));
 
 const cellGrid = document.querySelector("main.cell-grid");
 const MAX_DIMENSION = 100;
@@ -41,3 +48,6 @@ function constructGrid (index) {
     [...document.querySelectorAll(".cell")].map(cell => cell.remove());
     cells.forEach(cell => cellGrid.appendChild(cell));
 }
+
+// Define a grid right away
+initialButton.dispatchEvent(new Event("mouseover"));
