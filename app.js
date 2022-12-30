@@ -33,11 +33,7 @@ const cellGrid = document.querySelector("main.cell-grid");
 const MAX_DIMENSION = 100;
 
 function constructGrid (index) {
-    let dimension = parseInt(index);
-
-    if (isNaN(dimension)) {
-	dimension = 16;
-    }
+    let dimension = index;
 
     // Keep the user-specified dimension at or below MAX_DIMENSION
     // (usually 100, as recommended in the project walkthough)
