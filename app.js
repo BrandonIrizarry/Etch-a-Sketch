@@ -11,24 +11,6 @@ const constructGridInternal = dimension => {
     return cells;
 };
 
-const sliderButtons = [...document.querySelectorAll(".set-dimension")];
-const START_INDEX = 16;
-let previousSliderButtonIndex = START_INDEX;
-const initialButton = sliderButtons[START_INDEX];
-
-function defineGrid (event) {
-    const sliderButton = event.target;
-    const index = parseInt(sliderButton.dataset.index);
-    constructGrid(index);
-
-    sliderButtons[previousSliderButtonIndex - 1].style.backgroundColor = "red";
-    sliderButton.style.backgroundColor = "black";
-    previousSliderButtonIndex = sliderButton.dataset.index;
-}
-
-
-sliderButtons.forEach(sliderButton => sliderButton.addEventListener("mouseover", defineGrid));
-
 const cellGrid = document.querySelector("main.cell-grid");
 const MAX_DIMENSION = 100;
 
@@ -46,6 +28,23 @@ function constructGrid (dimension) {
     // Adjust 'grid-template-columns' CSS property to match given dimension
     cellGrid.style.gridTemplateColumns = `repeat(${dimension}, 1fr`;
 }
+
+const sliderButtons = [...document.querySelectorAll(".set-dimension")];
+const START_INDEX = 16;
+let previousSliderButtonIndex = START_INDEX;
+const initialButton = sliderButtons[START_INDEX];
+
+function defineGrid (event) {
+    const sliderButton = event.target;
+    const index = parseInt(sliderButton.dataset.index);
+    constructGrid(index);
+
+    sliderButtons[previousSliderButtonIndex - 1].style.backgroundColor = "red";
+    sliderButton.style.backgroundColor = "black";
+    previousSliderButtonIndex = sliderButton.dataset.index;
+}
+
+sliderButtons.forEach(sliderButton => sliderButton.addEventListener("mouseover", defineGrid));
 
 // Define a grid right away
 initialButton.dispatchEvent(new Event("mouseover"));
