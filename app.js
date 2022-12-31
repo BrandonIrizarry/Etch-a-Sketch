@@ -4,17 +4,34 @@ const cellGrid = document.querySelector("main.cell-grid");
 // This constant is needed for both cells and the slider, so make it globally accessible
 const CELL_VERTICAL_OFFSET = document.querySelector(".prompt-dimension").getClientRects()[0].height;
 
-let paintOn = false;
+const makePainter = () => {
+    let paintOn = false;
+
+    return {
+	paint (DOMelement, forcePaint = false) {
+	    if (paintOn || forcePaint) DOMelement.style.backgroundColor = "black";
+	},
+
+	togglePainting () {
+	    paintOn = !paintOn;
+	},
+
+	adaptCursor (DOMelement) {
+	    if (paintOn) {
+		DOMelement.style.cursor = "crosshair";
+	    } else {
+		DOMelement.style.cursor = "auto";
+	    }
+	}
+    };
+};
+
+const painter = makePainter();
 
 cellGrid.addEventListener("click", event => {
-    paintOn = !paintOn;
-
-    if (paintOn) event.target.style.backgroundColor = "black";
-    if (paintOn) {
-	cellGrid.style.cursor = "crosshair";
-    } else {
-	cellGrid.style.cursor = "auto";
-    }
+    painter.togglePainting();
+    painter.paint(event.target);
+    painter.adaptCursor(event.target);
 });
 
 const constructGridInternal = dimension => {
@@ -43,19 +60,24 @@ function constructGrid (dimension) {
     cells.forEach(cell => {
 	cellGrid.appendChild(cell);
 	cell.addEventListener("mouseover", event => {
-	    if (paintOn) event.target.style.backgroundColor = "black";
+	    painter.paint(event.target);
 	});
 
 	cell.addEventListener("touchstart", event => {
 	    event.preventDefault();
-	    console.log(event);
+
+	    // Using painter, even swiping falls under the influence of 'paintOn',
+	    // so we must set the 'forcePaint' flag here
+	    painter.paint(event.target, true);
 	});
 
 	// On mobile devices, swipe to paint (see "TOUCHSCREEN EVENTS" below)
 	cell.addEventListener("touchmove", event => {
 	    event.preventDefault();
 	    const { clientX, clientY } = event.targetTouches[0];
-	    findCellUnderTouchMove(clientX, clientY).style.backgroundColor = "black";
+	    const cell = findCellUnderTouchMove(clientX, clientY);
+
+	    painter.paint(cell, true);
 	});
     });
 
