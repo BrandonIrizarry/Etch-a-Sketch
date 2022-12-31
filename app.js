@@ -46,7 +46,7 @@ const initialButton = sliderButtons[START_INDEX];
 
 function defineGrid (event) {
     const sliderButton = event.target;
-    const index = parseInt(sliderButton.dataset.index);
+    const index = parseInt(sliderButton.dataset.index) - 1;
     constructGrid(index);
 
     sliderButtons[previousSliderButtonIndex - 1].style.backgroundColor = "red";
