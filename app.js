@@ -74,8 +74,7 @@ const START_INDEX = 16;
 let previousSliderButtonIndex = START_INDEX;
 const initialButton = sliderButtons[START_INDEX];
 
-function defineGrid (event) {
-    const sliderButton = event.target;
+function defineGrid (sliderButton) {
     const index = parseInt(sliderButton.dataset.index) - 1;
     constructGrid(index);
 
@@ -85,7 +84,9 @@ function defineGrid (event) {
 }
 
 sliderButtons.forEach(sliderButton => {
-    sliderButton.addEventListener("mouseover", defineGrid);
+    sliderButton.addEventListener("mouseover", event => defineGrid(event.target));
+    sliderButton.addEventListener("touchstart", defineGridTouch);
+    sliderButton.addEventListener("touchmove", defineGridTouch);
 });
 
 const SLIDER_BUTTON_WIDTH = initialButton.getClientRects()[0].width;
@@ -95,6 +96,15 @@ function findSliderButtonUnderTouchMove (clientX) {
 
     return sliderButtons[x];
 };
+
+// Helper function to eliminate repeated code when handling touchstart
+// and touchmove
+function defineGridTouch (event) {
+    event.preventDefault();
+    const clientX = event.targetTouches[0].clientX;
+    const sliderButton = findSliderButtonUnderTouchMove(clientX);
+    defineGrid(sliderButton);
+}
 
 // Define a grid right away
 initialButton.dispatchEvent(new Event("mouseover"));

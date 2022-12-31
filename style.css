@@ -21,7 +21,7 @@ body {
 .prompt-dimension {
     display: flex;
     background-color: red;
-    height: 20px;
+    height: 50px;
 }
 
 .set-dimension {
