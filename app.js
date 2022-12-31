@@ -39,10 +39,11 @@ function constructGrid (dimension) {
 	    console.log(event);
 	});
 
+	// On mobile devices, swipe to paint (see "TOUCHSCREEN EVENTS" below)
 	cell.addEventListener("touchmove", event => {
 	    event.preventDefault();
 	    const { clientX, clientY } = event.targetTouches[0];
-	    console.log(findCellUnderTouchMove(clientX, clientY));
+	    findCellUnderTouchMove(clientX, clientY).style.backgroundColor = "black";
 	});
     });
 
