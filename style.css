@@ -18,7 +18,7 @@ body {
     border: 1px solid black;
 }
 
-.prompt-dimension {
+.slider {
     display: flex;
     background-color: red;
     height: 50px;
