@@ -2,6 +2,7 @@
 html {
     box-sizing: border-box;
     font-size: 100%;
+    color: white;
 }
 
 *, *::before, *::after {
@@ -66,12 +67,15 @@ header {
     align-items: baseline;
 }
 
-.side-panel > * {
-    color  : white;
-}
-
 .side-panel > fieldset {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
