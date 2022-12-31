@@ -59,7 +59,7 @@ profile.
   corners of the cells slightly.
 
 + Also... some people's Githubs have README.md "splash" pages. 
-* Checklist [2/9]
+* Checklist [3/11]
 + [X] Enable for mobile.
   - What should be the default behavior? Dragging with one's finger
     should be a mouseover. Perhaps the finger-tap-as-click works here
@@ -82,4 +82,4 @@ profile.
 + [ ] Add a color gradient going across the slider?
   - We would also have to change the color of the selected slider
     button, since the slider buttons on the left will start out black.
-+ [ ] For desktop: when pen is up or down, change mouse icon accordingly.
++ [X] For desktop: when pen is up or down, change mouse icon accordingly.

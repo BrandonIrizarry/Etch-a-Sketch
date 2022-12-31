@@ -17,10 +17,17 @@ const cellGrid = document.querySelector("main.cell-grid");
 // This constant is needed for both cells and the slider, so make it globally accessible
 const CELL_VERTICAL_OFFSET = document.querySelector(".prompt-dimension").getClientRects()[0].height;
 
-let paintOn = true;
+let paintOn = false;
+
 cellGrid.addEventListener("click", event => {
     paintOn = !paintOn;
+
     if (paintOn) event.target.style.backgroundColor = "black";
+    if (paintOn) {
+	cellGrid.style.cursor = "crosshair";
+    } else {
+	cellGrid.style.cursor = "auto";
+    }
 });
 const MAX_DIMENSION = 100;
 
