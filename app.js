@@ -28,9 +28,10 @@ cellGrid.addEventListener("click", event => {
 	cellGrid.style.cursor = "auto";
     }
 });
-const MAX_DIMENSION = 100;
 
 function constructGrid (dimension) {
+    const MAX_DIMENSION = 100;
+
     // First, remove the existing cells
     [...document.querySelectorAll(".cell")].forEach(cell => cell.remove());
 
