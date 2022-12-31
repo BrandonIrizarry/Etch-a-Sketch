@@ -59,11 +59,13 @@ profile.
   corners of the cells slightly.
 
 + Also... some people's Githubs have README.md "splash" pages. 
-* Checklist [0/7]
-+ [ ] Enable for mobile.
+* Checklist [1/8]
++ [X] Enable for mobile.
   - What should be the default behavior? Dragging with one's finger
     should be a mouseover. Perhaps the finger-tap-as-click works here
     still.
++ [ ] The slider should now respond to swiping.
+  - The slider that adjusts the grid size should also be touch-responsive.
 + [ ] Add some usage instructions in an aside div.
   - Do for both desktop and mobile. These would appear in an aside div.
 + [ ] Add a clear-all feature/button.
