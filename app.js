@@ -84,7 +84,17 @@ function defineGrid (event) {
     previousSliderButtonIndex = sliderButton.dataset.index;
 }
 
-sliderButtons.forEach(sliderButton => sliderButton.addEventListener("mouseover", defineGrid));
+sliderButtons.forEach(sliderButton => {
+    sliderButton.addEventListener("mouseover", defineGrid);
+});
+
+const SLIDER_BUTTON_WIDTH = initialButton.getClientRects()[0].width;
+
+function findSliderButtonUnderTouchMove (clientX) {
+    const x = Math.floor(clientX / SLIDER_BUTTON_WIDTH);
+
+    return sliderButtons[x];
+};
 
 // Define a grid right away
 initialButton.dispatchEvent(new Event("mouseover"));
