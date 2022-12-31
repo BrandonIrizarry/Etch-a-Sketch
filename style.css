@@ -31,3 +31,7 @@ body {
 header {
     display: flex;
 }
+
+.side-panel > * {
+    color  : white;
+}
