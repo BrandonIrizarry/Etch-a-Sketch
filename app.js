@@ -116,8 +116,10 @@ function defineGrid (sliderButton) {
     previousSliderButtonIndex = sliderButton.dataset.index;
 }
 
+const MAGIC_EVENT = "mouseover";
+
 sliderButtons.forEach(sliderButton => {
-    sliderButton.addEventListener("mouseover", event => defineGrid(event.target));
+    sliderButton.addEventListener(MAGIC_EVENT, event => defineGrid(event.target));
     sliderButton.addEventListener("touchstart", defineGridTouch);
     sliderButton.addEventListener("touchmove", defineGridTouch);
 });
@@ -140,4 +142,4 @@ function defineGridTouch (event) {
 }
 
 // Define a grid right away
-initialButton.dispatchEvent(new Event("mouseover"));
+initialButton.dispatchEvent(new Event(MAGIC_EVENT));
