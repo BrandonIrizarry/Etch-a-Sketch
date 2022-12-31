@@ -27,7 +27,7 @@ const makePainter = () => {
 
 const painter = makePainter();
 
-const cellGrid = document.querySelector("main.cell-grid");
+const cellGrid = document.querySelector(".cell-grid");
 
 cellGrid.addEventListener("click", event => {
     painter.togglePainting();
