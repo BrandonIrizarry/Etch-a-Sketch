@@ -1,15 +1,3 @@
-const constructGridInternal = dimension => {
-    const cells = Array.from({length: dimension * dimension}, () => {
-
-	// Construct a new cell as the current array element
-	const cell = document.createElement("div");
-	cell.classList.add("cell");
-	return cell;
-    });
-
-    return cells;
-};
-
 const cellGrid = document.querySelector("main.cell-grid");
 
 // Discover the height of the slider widget: it's our vertical offset for determining cell indices
@@ -28,6 +16,18 @@ cellGrid.addEventListener("click", event => {
 	cellGrid.style.cursor = "auto";
     }
 });
+
+const constructGridInternal = dimension => {
+    const cells = Array.from({length: dimension * dimension}, () => {
+
+	// Construct a new cell as the current array element
+	const cell = document.createElement("div");
+	cell.classList.add("cell");
+	return cell;
+    });
+
+    return cells;
+};
 
 function constructGrid (dimension) {
     const MAX_DIMENSION = 100;
