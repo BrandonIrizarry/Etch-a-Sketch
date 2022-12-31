@@ -1,12 +1,11 @@
-const createCell = () => {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    return cell;
-};
-
 const constructGridInternal = dimension => {
-    const cellGridArea = dimension * dimension;
-    const cells = Array.from({length: cellGridArea}, createCell);
+    const cells = Array.from({length: dimension * dimension}, () => {
+
+	// Construct a new cell as the current array element
+	const cell = document.createElement("div");
+	cell.classList.add("cell");
+	return cell;
+    });
 
     return cells;
 };
