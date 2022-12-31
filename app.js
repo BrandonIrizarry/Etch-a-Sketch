@@ -33,10 +33,37 @@ function constructGrid (dimension) {
 	cell.addEventListener("mouseover", event => {
 	    if (paintOn) event.target.style.backgroundColor = "black";
 	});
+
+	cell.addEventListener("touchstart", event => {
+	    event.preventDefault();
+	    console.log(event);
+	});
+
+	cell.addEventListener("touchmove", event => {
+	    event.preventDefault();
+	    const { clientX, clientY } = event.targetTouches[0];
+	    console.log(findCellUnderTouchMove(clientX, clientY));
+	});
     });
 
     // Adjust 'grid-template-columns' CSS property to match given dimension
     cellGrid.style.gridTemplateColumns = `repeat(${dimension}, 1fr`;
+
+    // TOUCHSCREEN EVENTS
+
+    // Discover the width and height of a cell in the current grid
+    // Note that we need only find and analyze the first cell returned by 'document.querySelector'
+    const { width: CELL_WIDTH, height: CELL_HEIGHT } = document.querySelector(".cell").getClientRects()[0];
+
+    // Discover the height of the slider widget: it's our vertical offset for determining cell indices
+    const CELL_VERTICAL_OFFSET = document.querySelector(".prompt-dimension").getClientRects()[0].height;
+
+    function findCellUnderTouchMove (clientX, clientY) {
+	const x = Math.floor(clientX / CELL_WIDTH);
+	const y = Math.floor((clientY - CELL_VERTICAL_OFFSET) / CELL_HEIGHT);
+
+	return cells[x + dimension * y];
+    };
 }
 
 const sliderButtons = [...document.querySelectorAll(".set-dimension")];
