@@ -12,6 +12,11 @@ const constructGridInternal = dimension => {
 };
 
 const cellGrid = document.querySelector("main.cell-grid");
+
+// Discover the height of the slider widget: it's our vertical offset for determining cell indices
+// This constant is needed for both cells and the slider, so make it globally accessible
+const CELL_VERTICAL_OFFSET = document.querySelector(".prompt-dimension").getClientRects()[0].height;
+
 let paintOn = true;
 cellGrid.addEventListener("click", event => {
     paintOn = !paintOn;
@@ -55,9 +60,6 @@ function constructGrid (dimension) {
     // Discover the width and height of a cell in the current grid
     // Note that we need only find and analyze the first cell returned by 'document.querySelector'
     const { width: CELL_WIDTH, height: CELL_HEIGHT } = document.querySelector(".cell").getClientRects()[0];
-
-    // Discover the height of the slider widget: it's our vertical offset for determining cell indices
-    const CELL_VERTICAL_OFFSET = document.querySelector(".prompt-dimension").getClientRects()[0].height;
 
     function findCellUnderTouchMove (clientX, clientY) {
 	const x = Math.floor(clientX / CELL_WIDTH);
