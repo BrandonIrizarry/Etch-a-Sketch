@@ -1,5 +1,3 @@
-const cellGrid = document.querySelector("main.cell-grid");
-
 const makePainter = () => {
     let paintOn = false;
 
@@ -28,6 +26,8 @@ const makePainter = () => {
 };
 
 const painter = makePainter();
+
+const cellGrid = document.querySelector("main.cell-grid");
 
 cellGrid.addEventListener("click", event => {
     painter.togglePainting();
