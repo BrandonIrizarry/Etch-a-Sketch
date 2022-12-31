@@ -8,6 +8,11 @@ const makePainter = () => {
     let paintOn = false;
 
     return {
+	// I suspect the 'forcePaint' flag is mainly useful for
+	// testing, when I switch from desktop view to responsive view
+	// in the same development session, and 'paintOn' remains
+	// cleared from when I was in desktop view, which is of course
+	// undesirable
 	paint (DOMelement, forcePaint = false) {
 	    if (paintOn || forcePaint) DOMelement.style.backgroundColor = "black";
 	},
