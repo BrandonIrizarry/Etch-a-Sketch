@@ -1,3 +1,5 @@
+"use strict";
+
 const makePainter = () => {
     let paintOn = false;
     let penColor = "black";
