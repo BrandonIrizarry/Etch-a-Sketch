@@ -1,5 +1,6 @@
 const makePainter = () => {
     let paintOn = false;
+    let penColor = "black";
 
     return {
 	// I suspect the 'forcePaint' flag is mainly useful for
@@ -8,7 +9,7 @@ const makePainter = () => {
 	// cleared from when I was in desktop view, which is of course
 	// undesirable
 	paint (DOMelement, forcePaint = false) {
-	    if (paintOn || forcePaint) DOMelement.style.backgroundColor = "black";
+	    if (paintOn || forcePaint) DOMelement.style.backgroundColor = penColor;
 	},
 
 	togglePainting () {
