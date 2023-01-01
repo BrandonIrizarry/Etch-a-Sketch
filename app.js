@@ -8,7 +8,7 @@ const makePainter = () => {
 	// in the same development session, and 'paintOn' remains
 	// cleared from when I was in desktop view, which is of course
 	// undesirable
-	paint (DOMelement, forcePaint = false) {
+	paint (DOMelement = document.body, forcePaint = false) {
 	    if (paintOn || forcePaint) DOMelement.style.backgroundColor = penColor;
 	},
 
@@ -16,7 +16,7 @@ const makePainter = () => {
 	    paintOn = !paintOn;
 	},
 
-	adaptCursor (DOMelement) {
+	adaptCursor (DOMelement = document.body) {
 	    if (paintOn) {
 		DOMelement.style.cursor = "crosshair";
 	    } else {
@@ -24,7 +24,7 @@ const makePainter = () => {
 	    }
 	},
 
-	changePenColor (newColor) {
+	changePenColor (newColor = "black") {
 	    penColor = newColor;
 	}
     };
