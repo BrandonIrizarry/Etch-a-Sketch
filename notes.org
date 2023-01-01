@@ -59,7 +59,7 @@ profile.
   corners of the cells slightly.
 
 + Also... some people's Githubs have README.md "splash" pages. 
-* Checklist [3/11]
+* Checklist [4/11]
 + [X] Enable for mobile.
   - What should be the default behavior? Dragging with one's finger
     should be a mouseover. Perhaps the finger-tap-as-click works here
@@ -72,7 +72,7 @@ profile.
 + [ ] Maybe export to BMP?
 + [ ] For desktop, enable some keyboard shortcuts.
   - For example, left and right arrows can adjust the grid size.
-+ [ ] Be sure to add your tag at the bottom of the page.
++ [X] Be sure to add your tag at the bottom of the page.
 + [ ] Save the existing image when moving from smaller to larger dimensions?
   - When going the other way (larger to smaller), allow for
     truncation.
@@ -83,3 +83,6 @@ profile.
   - We would also have to change the color of the selected slider
     button, since the slider buttons on the left will start out black.
 + [X] For desktop: when pen is up or down, change mouse icon accordingly.
++ [ ] Migrate from labels/input-checkboxes to simple divs, or possibly
+  something like links or buttons. [[https://www.digitalocean.com/community/tutorials/how-to-use-links-and-buttons-with-state-pseudo-classes-in-css][This Digital Ocean article]] looks
+  promising.
