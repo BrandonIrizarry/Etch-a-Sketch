@@ -21,9 +21,10 @@ body {
     gap: 20px;
     grid-template-areas:
 	"main main main title"
-	"main main main panel"
-	"main main main panel"
-	"footer footer footer panel";
+	"main main main control-panel"
+	"main main main ."
+	"footer footer footer .";
+    grid-auto-columns: 1fr;
     min-height: 100vh;
  }
 
@@ -39,7 +40,7 @@ main {
 }
 
 .cell {
-    background-color: gray;
+    background-color: white;
     border: 1px solid black;
 }
 
@@ -66,18 +67,12 @@ h1.title {
     align-items: center;
 }
 
-.side-panel {
+fieldset.control-panel {
     font-size: 1.5rem;
-    grid-area: panel;
+    grid-area: control-panel;
     display: flex;
     flex-direction: column;
-    align-items: baseline;
-}
-
-.side-panel > fieldset {
-    align-self: center;
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
     gap: 20px;
 }
 
