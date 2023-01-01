@@ -151,8 +151,15 @@ function defineGridTouch (event) {
 const radioButtons = [...document.querySelectorAll(`input[type="radio"]`)];
 const radioLabels = [...document.querySelectorAll(".control-panel > label")];
 
+// FIXME: Assign event listeners individually, don't use 'forEach'
+const colorPicker = document.querySelector("#color-picker");
+const radioColorCustom = document.querySelector("#pen-color-custom");
+const labelColorCustom = document.querySelector(`label[for="pen-color-custom"]`);
+
 radioLabels.forEach((label, i) => {
     label.addEventListener("click", () => {
+	labelColorCustom.style.backgroundColor = "dodgerblue";
+
 	const value = radioButtons[i].value;
 
 	switch (value) {
@@ -170,8 +177,13 @@ radioLabels.forEach((label, i) => {
     });
 });
 
-document.querySelector("#color-picker").addEventListener("click", () => {
-    document.querySelector("#pen-color-custom").checked = true;
+colorPicker.addEventListener("click", () => {
+    radioColorCustom.checked = true;
+});
+
+colorPicker.addEventListener("change", () => {
+    labelColorCustom.style.backgroundColor = colorPicker.value;
+    painter.changePenColor(colorPicker.value);
 });
 
 // MAIN (IMMEDIATE ACTIONS)
