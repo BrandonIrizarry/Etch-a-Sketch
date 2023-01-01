@@ -96,3 +96,24 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
+a {
+    padding-left: 10px;
+}
+
+/* https://blog.hubspot.com/website/remove-underline-from-links-css */
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
