@@ -160,10 +160,18 @@ radioLabels.forEach((label, i) => {
 	case "white":
 	    painter.changePenColor(value);
 	    break;
+	case "custom":
+	    break;
+	case "random":
+	    break;
 	default:
 	    break;
 	}
     });
+});
+
+document.querySelector("#color-picker").addEventListener("click", () => {
+    document.querySelector("#pen-color-custom").checked = true;
 });
 
 // MAIN (IMMEDIATE ACTIONS)

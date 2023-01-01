@@ -86,3 +86,5 @@ profile.
 + [ ] Migrate from labels/input-checkboxes to simple divs, or possibly
   something like links or buttons. [[https://www.digitalocean.com/community/tutorials/how-to-use-links-and-buttons-with-state-pseudo-classes-in-css][This Digital Ocean article]] looks
   promising.
++ [ ] See [[https://stackoverflow.com/a/46988880][this link]] for my inspiration for integrating the color
+  picker seamlessly with the radio element.
