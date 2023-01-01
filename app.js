@@ -142,5 +142,10 @@ function defineGridTouch (event) {
     defineGrid(sliderButton);
 }
 
+// MAIN (IMMEDIATE ACTIONS)
+
 // Define a grid right away
 initialButton.dispatchEvent(new Event(MAGIC_EVENT));
+
+// Check 'black' in the Control Panel
+document.querySelector("#pen-color-black").checked = true;
