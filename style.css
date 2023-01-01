@@ -20,7 +20,7 @@ body {
     display: grid;
     gap: 20px;
     grid-template-areas:
-	"main main main panel"
+	"main main main title"
 	"main main main panel"
 	"main main main panel"
 	"footer footer footer panel";
@@ -59,6 +59,13 @@ header {
 
 /* SIDE PANEL */
 
+h1.title {
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .side-panel {
     font-size: 1.5rem;
     grid-area: panel;
@@ -68,6 +75,7 @@ header {
 }
 
 .side-panel > fieldset {
+    align-self: center;
     display: flex;
     flex-direction: column;
     gap: 20px;
