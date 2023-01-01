@@ -22,6 +22,10 @@ const makePainter = () => {
 	    } else {
 		DOMelement.style.cursor = "auto";
 	    }
+	},
+
+	changePenColor (newColor) {
+	    penColor = newColor;
 	}
     };
 };
@@ -141,6 +145,26 @@ function defineGridTouch (event) {
     const sliderButton = findSliderButtonUnderTouchMove(clientX);
     defineGrid(sliderButton);
 }
+
+// CONTROL PANEL
+
+const radioButtons = [...document.querySelectorAll(`input[type="radio"]`)];
+const radioLabels = [...document.querySelectorAll(".control-panel > label")];
+
+radioLabels.forEach((label, i) => {
+    label.addEventListener("click", () => {
+	const value = radioButtons[i].value;
+
+	switch (value) {
+	case "black":
+	case "white":
+	    painter.changePenColor(value);
+	    break;
+	default:
+	    break;
+	}
+    });
+});
 
 // MAIN (IMMEDIATE ACTIONS)
 
