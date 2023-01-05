@@ -59,7 +59,7 @@ profile.
   corners of the cells slightly.
 
 + Also... some people's Githubs have README.md "splash" pages. 
-* Checklist [4/11]
+* Checklist [6/14]
 + [X] Enable for mobile.
   - What should be the default behavior? Dragging with one's finger
     should be a mouseover. Perhaps the finger-tap-as-click works here
@@ -83,8 +83,17 @@ profile.
   - We would also have to change the color of the selected slider
     button, since the slider buttons on the left will start out black.
 + [X] For desktop: when pen is up or down, change mouse icon accordingly.
-+ [ ] Migrate from labels/input-checkboxes to simple divs, or possibly
++ [X] Migrate from labels/input-checkboxes to simple divs, or possibly
   something like links or buttons. [[https://www.digitalocean.com/community/tutorials/how-to-use-links-and-buttons-with-state-pseudo-classes-in-css][This Digital Ocean article]] looks
   promising.
-+ [ ] See [[https://stackoverflow.com/a/46988880][this link]] for my inspiration for integrating the color
++ [X] See [[https://stackoverflow.com/a/46988880][this link]] for my inspiration for integrating the color
   picker seamlessly with the radio element.
++ [ ] Using the application on desktop appears to be a bit
+  confusing... will instructions be enough?
+* Priorities <2023-01-04 Wed> [0/3]
+  1. [ ] Add a "clear all" button.
+  2. [ ] Design the slider to use a color gradient.
+  3. [ ] Export to bmp/png.
+  4. [ ] Save existing image when resizing.
+  5. [ ] Usage instructions.
+
