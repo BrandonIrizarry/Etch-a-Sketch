@@ -85,7 +85,8 @@ function constructGrid (dimension) {
 	    const { clientX, clientY } = event.targetTouches[0];
 	    const cell = findCellUnderTouchMove(clientX, clientY);
 
-	    painter.paint(cell, true);
+	    // paint only if within the Etch-a-Sketch board
+	    if (cell !== null) painter.paint(cell, true);
 	});
     });
 
@@ -104,6 +105,10 @@ function constructGrid (dimension) {
     function findCellUnderTouchMove (clientX, clientY) {
 	const x = Math.floor(clientX / CELL_WIDTH);
 	const y = Math.floor((clientY - CELL_VERTICAL_OFFSET) / CELL_HEIGHT);
+
+	// a value of 'null' indicates that painting is occurring
+	// out of range of the Etch-a-Sketch board
+	if (x >= dimension || y >= dimension) return null;
 
 	return cells[x + dimension * y];
     };
