@@ -99,8 +99,14 @@ function constructGrid (dimension) {
     // Note that we need only find and analyze the first cell returned by 'document.querySelector'
     const { width: CELL_WIDTH, height: CELL_HEIGHT } = document.querySelector(".cell").getClientRects()[0];
 
-    // Discover the height of the slider widget: it's our vertical offset for determining cell indices
-    const CELL_VERTICAL_OFFSET = document.querySelector(".slider").getClientRects()[0].height;
+    // Discover the total height of all widgets above the grid: this
+    // height is the vertical offset for determining cell indices
+    // const CELL_VERTICAL_OFFSET = document.querySelector(".slider").getClientRects()[0].height;
+
+    const CELL_VERTICAL_OFFSET = [...document.querySelectorAll(".y-offset")].reduce((totalHeight, element) => {
+	totalHeight += element.getClientRects()[0].height;
+	return totalHeight;
+    }, 0);
 
     function findCellUnderTouchMove (clientX, clientY) {
 	const x = Math.floor(clientX / CELL_WIDTH);
