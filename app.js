@@ -114,7 +114,7 @@ function constructGrid (dimension) {
 
 	// a value of 'null' indicates that painting is occurring
 	// out of range of the Etch-a-Sketch board
-	if (x >= dimension || y >= dimension) return null;
+	if (x >= dimension || y >= dimension || x < 0 || y < 0) return null;
 
 	return cells[x + dimension * y];
     };
