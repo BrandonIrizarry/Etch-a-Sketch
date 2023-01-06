@@ -169,18 +169,14 @@ radioLabels.forEach((label, i) => {
 
 	const value = radioButtons[i].value;
 
-	switch (value) {
-	case "black":
-	case "white":
+	if (value === "black" || value === "white") {
 	    painter.changePenColor(value);
-	    break;
-	case "custom":
-	    break;
-	case "random":
-	    break;
-	default:
-	    break;
 	}
+
+	// value 'custom' is handled by an event listener on a color
+	// picker
+
+	// TODO: value 'random' hasn't been implement yet
     });
 });
 

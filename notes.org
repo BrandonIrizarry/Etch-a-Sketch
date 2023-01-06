@@ -90,10 +90,15 @@ profile.
   picker seamlessly with the radio element.
 + [ ] Using the application on desktop appears to be a bit
   confusing... will instructions be enough?
-* Priorities <2023-01-04 Wed> [0/3]
+* Priorities <2023-01-04 Wed> [0/5]
   1. [ ] Add a "clear all" button.
   2. [ ] Design the slider to use a color gradient.
   3. [ ] Export to bmp/png.
   4. [ ] Save existing image when resizing.
   5. [ ] Usage instructions.
 
+* Priorities <2023-01-06 Fri> [0/1]
+  1. [ ] Slider: click and drag with the mouse, don't use mouseover
+     - mouseover is too distracting when you want to do other things.
+  2. [ ] Bug: Cursor icon toggles incorrectly on desktop 
+     - Click and drag to draw cells, not mouseover "state".
