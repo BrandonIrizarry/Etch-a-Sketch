@@ -185,12 +185,15 @@ radioLabels.forEach((label, i) => {
 
 	if (value === "black" || value === "white") {
 	    painter.changePenColor(value);
+	} else if (value === "random") {
+	    // https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-11.php
+	    const randomColorValue = Math.floor(Math.random() * (2 ** 24 + 1)).toString(16);
+
+	    painter.changePenColor(`#${randomColorValue}`);
 	}
 
 	// value 'custom' is handled by an event listener on a color
 	// picker
-
-	// TODO: value 'random' hasn't been implement yet
     });
 });
 
