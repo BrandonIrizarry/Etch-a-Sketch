@@ -180,15 +180,23 @@ const labelWhite = document.querySelector(`label[for="pen-color-white"]`);
 const labelColorCustom = document.querySelector(`label[for="pen-color-custom"]`);
 const labelLuckyPicker = document.querySelector(`label[for="pen-color-fixed-random"]`);
 
+// Catch all labels here, in case
+const allLabels = document.querySelectorAll("label");
+allLabels.forEach(label => label.addEventListener("click", resetLabelBackgrounds));
+
+function resetLabelBackgrounds () {
+    const initialLabelBackgroundColor = getComputedStyle(labelBlack).backgroundColor;
+
+    allLabels.forEach(label => {
+	label.style.backgroundColor = initialLabelBackgroundColor;
+    });
+}
+
 labelBlack.addEventListener("click", () => {
-    labelColorCustom.style.backgroundColor = "dodgerblue";
-    labelLuckyPicker.style.backgroundColor = "dodgerblue";
     painter.changePenColor("black");
 });
 
 labelWhite.addEventListener("click", () => {
-    labelColorCustom.style.backgroundColor = "dodgerblue";
-    labelLuckyPicker.style.backgroundColor = "dodgerblue";
     painter.changePenColor("white");
 });
 
@@ -198,7 +206,6 @@ labelLuckyPicker.addEventListener("click", () => {
     const randomColor = `#${randomColorValue}`;
     painter.changePenColor(randomColor);
 
-    labelColorCustom.style.backgroundColor = "dodgerblue";
     labelLuckyPicker.style.backgroundColor = randomColor;
 });
 
@@ -208,7 +215,6 @@ colorPicker.addEventListener("click", () => {
 });
 
 colorPicker.addEventListener("change", () => {
-    labelLuckyPicker.style.backgroundColor = "dodgerblue";
     labelColorCustom.style.backgroundColor = colorPicker.value;
     painter.changePenColor(colorPicker.value);
 });
