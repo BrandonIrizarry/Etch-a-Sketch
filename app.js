@@ -192,13 +192,8 @@ function resetLabelBackgrounds () {
     });
 }
 
-labelBlack.addEventListener("click", () => {
-    painter.changePenColor("black");
-});
-
-labelWhite.addEventListener("click", () => {
-    painter.changePenColor("white");
-});
+labelBlack.addEventListener("click", () => painter.changePenColor("black"));
+labelWhite.addEventListener("click", () => painter.changePenColor("white"));
 
 labelLuckyPicker.addEventListener("click", () => {
     // https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-11.php
@@ -209,6 +204,7 @@ labelLuckyPicker.addEventListener("click", () => {
     labelLuckyPicker.style.backgroundColor = randomColor;
 });
 
+// COLOR PICKER
 
 colorPicker.addEventListener("click", () => {
     radioColorCustom.checked = true;
@@ -218,6 +214,8 @@ colorPicker.addEventListener("change", () => {
     labelColorCustom.style.backgroundColor = colorPicker.value;
     painter.changePenColor(colorPicker.value);
 });
+
+// RESETTING THE GRID
 
 function resetGrid () {
     initialButton.dispatchEvent(new Event(MAGIC_EVENT));
