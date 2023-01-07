@@ -159,6 +159,15 @@ function defineGridTouch (event) {
     defineGrid(sliderButton);
 }
 
+// DETECT SCREEN ORIENTATION CHANGE
+// https://dev.to/smpnjn/how-to-detect-device-orientation-with-javascript-29e5
+const portrait = window.matchMedia("(orientation: portrait)");
+
+portrait.addEventListener("change", () => {
+    console.log("YES!");
+});
+
+
 // CONTROL PANEL
 
 const radioButtons = [...document.querySelectorAll(`input[type="radio"]`)];
