@@ -172,44 +172,45 @@ window.matchMedia("(orientation: portrait)").addEventListener("change", resetGri
 const radioButtons = [...document.querySelectorAll(`input[type="radio"]`)];
 const radioLabels = [...document.querySelectorAll(".control-panel > label")];
 
-// FIXME: Assign event listeners individually, don't use 'forEach'
 const colorPicker = document.querySelector("#color-picker");
 const radioColorCustom = document.querySelector("#pen-color-custom");
+
+const labelBlack = document.querySelector(`label[for="pen-color-black"]`);
+const labelWhite = document.querySelector(`label[for="pen-color-white"]`);
 const labelColorCustom = document.querySelector(`label[for="pen-color-custom"]`);
+const labelLuckyPicker = document.querySelector(`label[for="pen-color-fixed-random"]`);
 
-const luckyPicker = document.querySelector(`label[for="pen-color-fixed-random"]`);
-
-radioLabels.forEach((label, i) => {
-    label.addEventListener("click", () => {
-	labelColorCustom.style.backgroundColor = "dodgerblue";
-
-	const value = radioButtons[i].value;
-
-	if (value === "black" || value === "white") {
-	    painter.changePenColor(value);
-	}
-
-	// value 'custom' is handled by an event listener on a color
-	// picker
-    });
+labelBlack.addEventListener("click", () => {
+    labelColorCustom.style.backgroundColor = "dodgerblue";
+    labelLuckyPicker.style.backgroundColor = "dodgerblue";
+    painter.changePenColor("black");
 });
+
+labelWhite.addEventListener("click", () => {
+    labelColorCustom.style.backgroundColor = "dodgerblue";
+    labelLuckyPicker.style.backgroundColor = "dodgerblue";
+    painter.changePenColor("white");
+});
+
+labelLuckyPicker.addEventListener("click", () => {
+    // https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-11.php
+    const randomColorValue = Math.floor(Math.random() * (2 ** 24 + 1)).toString(16);
+    const randomColor = `#${randomColorValue}`;
+    painter.changePenColor(randomColor);
+
+    labelColorCustom.style.backgroundColor = "dodgerblue";
+    labelLuckyPicker.style.backgroundColor = randomColor;
+});
+
 
 colorPicker.addEventListener("click", () => {
     radioColorCustom.checked = true;
 });
 
 colorPicker.addEventListener("change", () => {
+    labelLuckyPicker.style.backgroundColor = "dodgerblue";
     labelColorCustom.style.backgroundColor = colorPicker.value;
     painter.changePenColor(colorPicker.value);
-});
-
-luckyPicker.addEventListener("click", () => {
-    // https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-11.php
-    const randomColorValue = Math.floor(Math.random() * (2 ** 24 + 1)).toString(16);
-    const randomColor = `#${randomColorValue}`;
-    painter.changePenColor(randomColor);
-
-    luckyPicker.style.backgroundColor = randomColor;
 });
 
 function resetGrid () {
