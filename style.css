@@ -124,24 +124,12 @@ a {
 }
 
 /* https://blog.hubspot.com/website/remove-underline-from-links-css */
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
+a:is(:link, :visited, :hover, :active) {
     text-decoration: none;
     color: inherit;
 }
 
-a:hover {
-    text-decoration: none;
-}
-
-a:active {
-    text-decoration: none;
-}
-
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 480px) {
     body {
 	padding-right: 20px;
     }
