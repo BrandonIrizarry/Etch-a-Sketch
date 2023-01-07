@@ -161,10 +161,14 @@ function defineGridTouch (event) {
 
 // DETECT SCREEN ORIENTATION CHANGE
 // https://dev.to/smpnjn/how-to-detect-device-orientation-with-javascript-29e5
+// This is necessary because changes in screen orientation affect the
+// cell dimensions, which ruins the element detection mechanism. So
+// the cleanest way out is to simply reset the grid when a change in
+// screen orientation takes place.
 const portrait = window.matchMedia("(orientation: portrait)");
 
 portrait.addEventListener("change", () => {
-    console.log("YES!");
+    initialButton.dispatchEvent(new Event(MAGIC_EVENT));
 });
 
 
