@@ -3,6 +3,7 @@
 const makePainter = () => {
     let paintOn = false;
     let penColor = "black";
+    let random = false;
 
     return {
 	// I suspect the 'forcePaint' flag is mainly useful for
@@ -10,8 +11,23 @@ const makePainter = () => {
 	// in the same development session, and 'paintOn' remains
 	// cleared from when I was in desktop view, which is of course
 	// undesirable
+	setRandom () {
+	    random = true;
+	},
+
+	clearRandom () {
+	    random = false;
+	},
+
 	paint (DOMelement = document.body, forcePaint = false) {
-	    if (paintOn || forcePaint) DOMelement.style.backgroundColor = penColor;
+	    let randomColor = null;
+
+	    if (random) {
+		const randomColorValue = Math.floor(Math.random() * (2 ** 24 + 1)).toString(16);
+		randomColor = `#${randomColorValue}`;
+	    }
+
+	    if (paintOn || forcePaint) DOMelement.style.backgroundColor = randomColor ?? penColor;
 	},
 
 	togglePainting () {
@@ -179,12 +195,17 @@ const labelBlack = document.querySelector(`label[for="pen-color-black"]`);
 const labelWhite = document.querySelector(`label[for="pen-color-white"]`);
 const labelColorCustom = document.querySelector(`label[for="pen-color-custom"]`);
 const labelLuckyPicker = document.querySelector(`label[for="pen-color-fixed-random"]`);
+const labelPsychedelic = document.querySelector(`label[for="pen-color-psychedelic"]`);
 
 // Catch all labels here, in case
 const allLabels = document.querySelectorAll("label");
-allLabels.forEach(label => label.addEventListener("click", resetLabelBackgrounds));
+allLabels.forEach(label => label.addEventListener("click", resetLabelSettings));
 
-function resetLabelBackgrounds () {
+function resetLabelSettings () {
+    // reset psychedelic painting
+    painter.clearRandom();
+
+    // reset background
     const initialLabelBackgroundColor = getComputedStyle(labelBlack).backgroundColor;
 
     allLabels.forEach(label => {
@@ -203,6 +224,8 @@ labelLuckyPicker.addEventListener("click", () => {
 
     labelLuckyPicker.style.backgroundColor = randomColor;
 });
+
+labelPsychedelic.addEventListener("click", painter.setRandom);
 
 // COLOR PICKER
 
