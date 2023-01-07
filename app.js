@@ -165,12 +165,7 @@ function defineGridTouch (event) {
 // cell dimensions, which ruins the element detection mechanism. So
 // the cleanest way out is to simply reset the grid when a change in
 // screen orientation takes place.
-const portrait = window.matchMedia("(orientation: portrait)");
-
-portrait.addEventListener("change", () => {
-    initialButton.dispatchEvent(new Event(MAGIC_EVENT));
-});
-
+window.matchMedia("(orientation: portrait)").addEventListener("change", resetGrid);
 
 // CONTROL PANEL
 
@@ -208,10 +203,14 @@ colorPicker.addEventListener("change", () => {
     painter.changePenColor(colorPicker.value);
 });
 
+function resetGrid () {
+    initialButton.dispatchEvent(new Event(MAGIC_EVENT));
+}
+
 // MAIN (IMMEDIATE ACTIONS)
 
 // Define a grid right away
-initialButton.dispatchEvent(new Event(MAGIC_EVENT));
+resetGrid();
 
 // Check 'black' in the Control Panel
 document.querySelector("#pen-color-black").checked = true;
