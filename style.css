@@ -26,6 +26,7 @@ body {
     flex-direction: column;
     gap: 20px;
     min-height: 100vh;
+    padding-bottom: 20px;
 }
 
 main {
@@ -38,12 +39,14 @@ main {
 .etch-a-sketch {
     display: flex;
     flex-direction: column;
-    flex: auto;
+    flex: 1;
 }
 
 .cell-grid {
     display: grid;
     flex: 1;
+    min-width: 300px;
+    min-height: 300px;
 }
 
 .cell {
@@ -74,20 +77,19 @@ header {
 }
 
 .control-panel {
-    font-size: 1.5rem;
-    grid-area: control-panel;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    height: 100%; /* avoid element overflow */
 }
 
 label {
     width: 300px;
-    height: 50px;
     border: 5px solid blue;
     background-color: dodgerblue;
+    display: flex;
 }
 
 /* See https://stackoverflow.com/a/46988880 for context about the next
