@@ -171,10 +171,10 @@ sliderButtons.forEach(sliderButton => {
     function sliderIsMoving (event) {
 	if (event.buttons === 0) {
 	    window.removeEventListener("mousemove", sliderIsMoving);
-	    const lastButton = findSliderButtonUnderTouchMove(event.clientX);
+	    const lastButton = findSliderButtonUnderMove(event.clientX);
 	    doSliderButton(lastButton, true);
 	} else {
-	    doSliderButton(findSliderButtonUnderTouchMove(event.clientX));
+	    doSliderButton(findSliderButtonUnderMove(event.clientX));
 	}
     }
 
@@ -183,7 +183,7 @@ sliderButtons.forEach(sliderButton => {
     sliderButton.addEventListener("touchmove", defineGridTouch);
 });
 
-function findSliderButtonUnderTouchMove (clientX) {
+function findSliderButtonUnderMove (clientX) {
     const SLIDER_BUTTON_WIDTH = initialButton.getClientRects()[0].width;
     const x = Math.floor(clientX / SLIDER_BUTTON_WIDTH);
 
@@ -195,7 +195,7 @@ function findSliderButtonUnderTouchMove (clientX) {
 function defineGridTouch (event) {
     event.preventDefault();
     const clientX = event.targetTouches[0].clientX;
-    const sliderButton = findSliderButtonUnderTouchMove(clientX);
+    const sliderButton = findSliderButtonUnderMove(clientX);
     doSliderButton(sliderButton, true);
 }
 
