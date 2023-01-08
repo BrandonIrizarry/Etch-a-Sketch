@@ -209,6 +209,7 @@ function resetLabelSettings () {
     const initialLabelBackgroundColor = getComputedStyle(labelBlack).backgroundColor;
 
     allLabels.forEach(label => {
+	label.style.background = ""; // for when "psychedelic" had been selected
 	label.style.backgroundColor = initialLabelBackgroundColor;
     });
 }
@@ -225,7 +226,14 @@ labelLuckyPicker.addEventListener("click", () => {
     labelLuckyPicker.style.backgroundColor = randomColor;
 });
 
-labelPsychedelic.addEventListener("click", painter.setRandom);
+labelPsychedelic.addEventListener("click", () => {
+    painter.setRandom();
+
+    // use any colorful linear gradient; the particular values are of
+    // no significance
+    // see 'https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient#description'
+    labelPsychedelic.style.background = "linear-gradient(135deg, red 0%, orange 25%, yellow 50%, green 75%, blue 100%)";
+});
 
 // COLOR PICKER
 

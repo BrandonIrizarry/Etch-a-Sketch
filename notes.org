@@ -103,10 +103,11 @@ profile.
   2. [ ] Bug: Cursor icon toggles incorrectly on desktop 
      - Click and drag to draw cells, not mouseover "state".
 
-* Priorities <2023-01-07 Sat> [4/4]
+* Priorities <2023-01-07 Sat> [5/5]
   1. [X] Rotation on a smartphone ruins the layout
   2. [X] Use Flexbox instead of Grid for the top-level layout
      - flex-direction of column for mobile, flex direction of row for
        wider screens.
   3. [X] Assign event listeners individually, don't use 'forEach'
   4. [X] Implement "random colors" feature
+  5. [X] Change background of psychedelic button
