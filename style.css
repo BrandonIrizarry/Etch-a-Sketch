@@ -74,11 +74,35 @@ body {
     grid-area: section;
 }
 
-label {
+label, .aux {
     width: 300px;
     border: 5px solid blue;
     background-color: dodgerblue;
     display: flex;
+    flex: 1;
+}
+
+.control {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control:first-child {
+    border-right: 1px solid blue;
+}
+
+#clear-all {
+    background-color: #9c005a;
+}
+
+#export {
+    background-color: #5a009c;
+}
+
+.control > span {
+    padding: 10px;
 }
 
 /* See https://stackoverflow.com/a/46988880 for context about the next
