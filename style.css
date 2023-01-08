@@ -36,8 +36,7 @@ body {
 
 .cell-grid {
     display: grid;
-    flex: 300px;
-    height: 100%;
+    flex: 1;
 }
 
 .cell {
