@@ -1,7 +1,6 @@
 "use strict";
 
 const makePainter = () => {
-    let paintOn = false;
     let penColor = "black";
     let random = false;
 
@@ -19,7 +18,7 @@ const makePainter = () => {
 	    random = false;
 	},
 
-	paint (DOMelement = document.body, forcePaint = false) {
+	paint (DOMelement = document.body) {
 	    let randomColor = null;
 
 	    if (random) {
@@ -27,23 +26,7 @@ const makePainter = () => {
 		randomColor = `#${randomColorValue}`;
 	    }
 
-	    if (paintOn || forcePaint) DOMelement.style.backgroundColor = randomColor ?? penColor;
-	},
-
-	setPaint () {
-	    paintOn = true;
-	},
-
-	clearPaint () {
-	    paintOn = false;
-	},
-
-	adaptCursor (DOMelement = document.body) {
-	    if (paintOn) {
-		DOMelement.style.cursor = "crosshair";
-	    } else {
-		DOMelement.style.cursor = "auto";
-	    }
+	    DOMelement.style.backgroundColor = randomColor ?? penColor;
 	},
 
 	changePenColor (newColor = "black") {
@@ -82,11 +65,10 @@ function constructGrid (dimension) {
 
     function mouseIsPainting (event) {
 	if (event.buttons === 0) {
-	    painter.clearPaint();
 	    window.removeEventListener("mousemove", mouseIsPainting);
 	} else {
 	    const cell = findCellUnderMove(event.clientX, event.clientY);
-	    painter.paint(cell, true);
+	    painter.paint(cell);
 	}
     }
 
@@ -95,9 +77,7 @@ function constructGrid (dimension) {
 
 	cell.addEventListener("click", event => {
 	    event.preventDefault();
-	    painter.setPaint();
 	    painter.paint(event.target);
-	    painter.clearPaint();
 	});
 
 	cell.addEventListener("mousedown", event => {
@@ -114,7 +94,7 @@ function constructGrid (dimension) {
 
 	    // Using painter, even swiping falls under the influence of 'paintOn',
 	    // so we must set the 'forcePaint' flag here
-	    painter.paint(event.target, true);
+	    painter.paint(event.target);
 	});
 
 	// On mobile devices, swipe to paint (see "TOUCHSCREEN EVENTS" below)
@@ -124,7 +104,7 @@ function constructGrid (dimension) {
 	    const cell = findCellUnderMove(clientX, clientY);
 
 	    // paint only if within the Etch-a-Sketch board
-	    if (cell !== null) painter.paint(cell, true);
+	    if (cell !== null) painter.paint(cell);
 	});
     });
 
