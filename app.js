@@ -280,6 +280,17 @@ function resetGrid () {
     initialButton.dispatchEvent(new Event(MAGIC_EVENT));
 }
 
+// AUXILIARY BUTTONS (CLEAR ALL, EXPORT)
+const clearAllButton = document.querySelector("#clear-all");
+const exportButton = document.querySelector("#export");
+
+clearAllButton.addEventListener("click", () => {
+    document.querySelectorAll(".cell").forEach(cell => {
+	cell.style.backgroundColor = "white";
+    });
+});
+
+
 // MAIN (IMMEDIATE ACTIONS)
 
 // Define a grid right away
