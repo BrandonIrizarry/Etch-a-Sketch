@@ -97,10 +97,10 @@ profile.
   4. [ ] Save existing image when resizing.
   5. [ ] Usage instructions.
 
-* Priorities <2023-01-06 Fri> [0/2]
-  1. [ ] Slider: click and drag with the mouse, don't use mouseover
+* Priorities <2023-01-06 Fri> [2/2]
+  1. [X] Slider: click and drag with the mouse, don't use mouseover
      - mouseover is too distracting when you want to do other things.
-  2. [ ] Bug: Cursor icon toggles incorrectly on desktop 
+  2. [X] Bug: Cursor icon toggles incorrectly on desktop 
      - Click and drag to draw cells, not mouseover "state".
 
 * Priorities <2023-01-07 Sat> [5/5]
