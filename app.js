@@ -95,7 +95,9 @@ function constructGrid (dimension) {
 
 	cell.addEventListener("click", event => {
 	    event.preventDefault();
-	    painter.paint(event.target, true);
+	    painter.setPaint();
+	    painter.paint(event.target);
+	    painter.clearPaint();
 	});
 
 	cell.addEventListener("mousedown", event => {
