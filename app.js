@@ -119,8 +119,6 @@ function constructGrid (dimension) {
 
     // Discover the total height of all widgets above the grid: this
     // height is the vertical offset for determining cell indices
-    // const CELL_VERTICAL_OFFSET = document.querySelector(".slider").getClientRects()[0].height;
-
     const CELL_VERTICAL_OFFSET = [...document.querySelectorAll(".y-offset")].reduce((totalHeight, element) => {
 	totalHeight += element.getClientRects()[0].height;
 	return totalHeight;
