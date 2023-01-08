@@ -288,6 +288,17 @@ clearAllButton.addEventListener("click", () => {
     });
 });
 
+exportButton.addEventListener("click", () => {
+    // Create blob object with file content
+    const blob = new Blob(
+	["This is a sample file content."],
+	{ type: "text/plain;charset=utf-8" }
+    );
+
+    // Create and save the file using the FileWriter library
+    saveAs(blob, "textfile.txt");
+});
+
 
 // MAIN (IMMEDIATE ACTIONS)
 
