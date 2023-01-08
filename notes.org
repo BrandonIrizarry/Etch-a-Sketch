@@ -90,8 +90,8 @@ profile.
   picker seamlessly with the radio element.
 + [ ] Using the application on desktop appears to be a bit
   confusing... will instructions be enough?
-* Priorities <2023-01-04 Wed> [0/5]
-  1. [ ] Add a "clear all" button.
+* Priorities <2023-01-04 Wed> [1/5]
+  1. [X] Add a "clear all" button.
   2. [ ] Design the slider to use a color gradient.
   3. [ ] Export to bmp/png.
   4. [ ] Save existing image when resizing.
