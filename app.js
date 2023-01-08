@@ -136,31 +136,55 @@ function constructGrid (dimension) {
     };
 }
 
+// SLIDER BUTTONS
+
 const sliderButtons = [...document.querySelectorAll(".set-dimension")];
 const START_INDEX = 16;
 let previousSliderButtonIndex = START_INDEX;
 const initialButton = sliderButtons[START_INDEX];
 
-function defineGrid (sliderButton) {
+function doSliderButton (sliderButton, activate=false) {
     const index = parseInt(sliderButton.dataset.index) - 1;
-    constructGrid(index);
+
+    if (activate) {
+	constructGrid(index);
+    }
 
     sliderButtons[previousSliderButtonIndex - 1].style.backgroundColor = "red";
     sliderButton.style.backgroundColor = "black";
     previousSliderButtonIndex = sliderButton.dataset.index;
 }
 
-const MAGIC_EVENT = "mouseover";
+const MAGIC_EVENT = "click";
 
 sliderButtons.forEach(sliderButton => {
-    sliderButton.addEventListener(MAGIC_EVENT, event => defineGrid(event.target));
+    // Mouse
+    sliderButton.addEventListener(MAGIC_EVENT, event => doSliderButton(event.target, true));
+
+    sliderButton.addEventListener("mousedown", event => {
+	// only works with left mouse-click (button 0)
+	if (event.button === 0) {
+	    window.addEventListener("mousemove", sliderIsMoving);
+	}
+    });
+
+    function sliderIsMoving (event) {
+	if (event.buttons === 0) {
+	    window.removeEventListener("mousemove", sliderIsMoving);
+	    const lastButton = findSliderButtonUnderTouchMove(event.clientX);
+	    doSliderButton(lastButton, true);
+	} else {
+	    doSliderButton(findSliderButtonUnderTouchMove(event.clientX));
+	}
+    }
+
+    // Touch
     sliderButton.addEventListener("touchstart", defineGridTouch);
     sliderButton.addEventListener("touchmove", defineGridTouch);
 });
 
-const SLIDER_BUTTON_WIDTH = initialButton.getClientRects()[0].width;
-
 function findSliderButtonUnderTouchMove (clientX) {
+    const SLIDER_BUTTON_WIDTH = initialButton.getClientRects()[0].width;
     const x = Math.floor(clientX / SLIDER_BUTTON_WIDTH);
 
     return sliderButtons[x];
@@ -172,7 +196,7 @@ function defineGridTouch (event) {
     event.preventDefault();
     const clientX = event.targetTouches[0].clientX;
     const sliderButton = findSliderButtonUnderTouchMove(clientX);
-    defineGrid(sliderButton);
+    doSliderButton(sliderButton, true);
 }
 
 // DETECT SCREEN ORIENTATION CHANGE
