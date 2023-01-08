@@ -162,6 +162,8 @@ sliderButtons.forEach(sliderButton => {
     sliderButton.addEventListener(MAGIC_EVENT, event => doSliderButton(event.target, true));
 
     sliderButton.addEventListener("mousedown", event => {
+	event.preventDefault();
+
 	// only works with left mouse-click (button 0)
 	if (event.button === 0) {
 	    window.addEventListener("mousemove", sliderIsMoving);
