@@ -112,7 +112,14 @@ profile.
   4. [X] Implement "random colors" feature
   5. [X] Change background of psychedelic button
 
+* Priorities <2023-01-08 Sun> [0/1]
+  1. [ ] Adjust flex-arrangement of control panel buttons, so we can
+     restore a flex-basis of 300px on the cell grid
+     - This may only be necessary for mobile devices; we can keep the
+       current arrangement for larger screens.
+
 * Exporting
+** PPM File Format
 Steven Charmichael from Quora ([[https://qr.ae/prKzQZ][original]]):
 
 Most image file formats do not include explicit x,y location values,
@@ -125,3 +132,6 @@ Netpbm format - Wikipedia
 Once a PPM image file is created, it can be loaded into an image
 editor and then saved in other format[s]: TIFF, PNG, GIF, JPEG,
 etc. For Windows users, I recommend IrfanView.
+
+** FileSaver Library
+https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
