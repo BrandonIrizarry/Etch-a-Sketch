@@ -77,12 +77,21 @@ label, .aux {
     width: 300px;
     border: 5px solid blue;
     background-color: dodgerblue;
-    display: flex;
+
+    /* Child flex attributes */
     flex: 1;
+
+    /* Parent flex attributes */
+    display: flex;
+    align-items: center;
 }
 
 .control {
+    /* Child flex attributes */
     flex: 1;
+    align-self: stretch;
+
+    /* Parent flex attributes */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,6 +132,7 @@ label[for="pen-color-custom"] {
 
 label > span {
     padding: 10px;
+    margin: auto;
 }
 
 footer {
