@@ -30,8 +30,12 @@ const makePainter = () => {
 	    if (paintOn || forcePaint) DOMelement.style.backgroundColor = randomColor ?? penColor;
 	},
 
-	togglePainting () {
-	    paintOn = !paintOn;
+	setPaint () {
+	    paintOn = true;
+	},
+
+	clearPaint () {
+	    paintOn = false;
 	},
 
 	adaptCursor (DOMelement = document.body) {
@@ -51,12 +55,6 @@ const makePainter = () => {
 const painter = makePainter();
 
 const cellGrid = document.querySelector(".cell-grid");
-
-cellGrid.addEventListener("click", event => {
-    painter.togglePainting();
-    painter.paint(event.target);
-    painter.adaptCursor(event.target);
-});
 
 const constructGridInternal = dimension => {
     const cells = Array.from({length: dimension * dimension}, () => {
@@ -81,10 +79,32 @@ function constructGrid (dimension) {
     dimension = Math.min(MAX_DIMENSION, dimension);
 
     const cells = constructGridInternal(dimension);
+
+    function mouseIsPainting (event) {
+	if (event.buttons === 0) {
+	    painter.clearPaint();
+	    window.removeEventListener("mousemove", mouseIsPainting);
+	} else {
+	    const cell = findCellUnderMove(event.clientX, event.clientY);
+	    painter.paint(cell, true);
+	}
+    }
+
     cells.forEach(cell => {
 	cellGrid.appendChild(cell);
-	cell.addEventListener("mouseover", event => {
-	    painter.paint(event.target);
+
+	cell.addEventListener("click", event => {
+	    event.preventDefault();
+	    painter.paint(event.target, true);
+	});
+
+	cell.addEventListener("mousedown", event => {
+	    event.preventDefault();
+
+	    // only works with left mouse-click (button 0)
+	    if (event.button === 0) {
+		window.addEventListener("mousemove", mouseIsPainting);
+	    }
 	});
 
 	cell.addEventListener("touchstart", event => {
@@ -99,7 +119,7 @@ function constructGrid (dimension) {
 	cell.addEventListener("touchmove", event => {
 	    event.preventDefault();
 	    const { clientX, clientY } = event.targetTouches[0];
-	    const cell = findCellUnderTouchMove(clientX, clientY);
+	    const cell = findCellUnderMove(clientX, clientY);
 
 	    // paint only if within the Etch-a-Sketch board
 	    if (cell !== null) painter.paint(cell, true);
@@ -124,7 +144,7 @@ function constructGrid (dimension) {
 	return totalHeight;
     }, 0);
 
-    function findCellUnderTouchMove (clientX, clientY) {
+    function findCellUnderMove (clientX, clientY) {
 	const x = Math.floor(clientX / CELL_WIDTH);
 	const y = Math.floor((clientY - CELL_VERTICAL_OFFSET) / CELL_HEIGHT);
 
