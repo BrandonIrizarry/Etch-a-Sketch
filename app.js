@@ -289,9 +289,11 @@ clearAllButton.addEventListener("click", () => {
 });
 
 exportButton.addEventListener("click", () => {
+    const content = ["This is a sample file content.", "if this is a second *line*, I'll be happy."]
+	  .map(chunk => chunk.concat("\n"));
+
     // Create blob object with file content
-    const blob = new Blob(
-	["This is a sample file content."],
+    const blob = new Blob(content,
 	{ type: "text/plain;charset=utf-8" }
     );
 
