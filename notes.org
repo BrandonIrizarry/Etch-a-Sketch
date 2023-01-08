@@ -111,3 +111,17 @@ profile.
   3. [X] Assign event listeners individually, don't use 'forEach'
   4. [X] Implement "random colors" feature
   5. [X] Change background of psychedelic button
+
+* Exporting
+Steven Charmichael from Quora ([[https://qr.ae/prKzQZ][original]]):
+
+Most image file formats do not include explicit x,y location values,
+since pixel color values are implicitly ordered by row, column (left
+to right, top to bottom).
+
+Among the easiest formats for creating images using a text editor is
+Netpbm format - Wikipedia
+
+Once a PPM image file is created, it can be loaded into an image
+editor and then saved in other format[s]: TIFF, PNG, GIF, JPEG,
+etc. For Windows users, I recommend IrfanView.
