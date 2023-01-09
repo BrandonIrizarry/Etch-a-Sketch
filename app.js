@@ -180,12 +180,13 @@ sliderButtons.forEach(sliderButton => {
     });
 
     function sliderIsMoving (event) {
+	const lastButton = findSliderButtonUnderMove(event.clientX);
+
 	if (event.buttons === 0) {
 	    window.removeEventListener("mousemove", sliderIsMoving);
-	    const lastButton = findSliderButtonUnderMove(event.clientX);
 	    doSliderButton(lastButton, true);
 	} else {
-	    doSliderButton(findSliderButtonUnderMove(event.clientX));
+	    doSliderButton(lastButton);
 	}
     }
 
