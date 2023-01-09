@@ -176,17 +176,17 @@ sliderButtons.forEach(sliderButton => {
 	// only works with left mouse-click (button 0)
 	if (event.button === 0) {
 	    window.addEventListener("mousemove", sliderIsMoving);
+
+	    window.addEventListener("mouseup", () => {
+		window.removeEventListener("mousemove", sliderIsMoving);
+		doSliderButton(sliderButtons[previousSliderButtonIndex - 1], true);
+	    }, { once: true });
 	}
     });
 
     function sliderIsMoving (event) {
 	const lastButton = findSliderButtonUnderMove(event.clientX);
 	doSliderButton(lastButton);
-
-	window.addEventListener("mouseup", () => {
-	    window.removeEventListener("mousemove", sliderIsMoving);
-	    doSliderButton(lastButton, true);
-	}, { once: true });
     }
 
     // Touch
