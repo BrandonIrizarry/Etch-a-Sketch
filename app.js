@@ -175,23 +175,34 @@ sliderButtons.forEach(sliderButton => {
 
 	// only works with left mouse-click (button 0)
 	if (event.button === 0) {
-	    window.addEventListener("mousemove", sliderIsMoving);
+	    const fn = event => sliderIsMoving(event.clientX);
+	    window.addEventListener("mousemove", fn);
 
 	    window.addEventListener("mouseup", () => {
-		window.removeEventListener("mousemove", sliderIsMoving);
+		window.removeEventListener("mousemove", fn);
 		doSliderButton(sliderButtons[previousSliderButtonIndex - 1], true);
 	    }, { once: true });
 	}
     });
 
-    function sliderIsMoving (event) {
-	const lastButton = findSliderButtonUnderMove(event.clientX);
+    // Touch
+    sliderButton.addEventListener("touchstart", event => {
+	event.preventDefault();
+
+	// only works with left mouse-click (button 0)
+	const fn = event => sliderIsMoving(event.targetTouches[0].clientX);
+	window.addEventListener("touchmove", fn);
+
+	window.addEventListener("touchend", () => {
+	    window.removeEventListener("touchmove", fn);
+	    doSliderButton(sliderButtons[previousSliderButtonIndex - 1], true);
+	}, { once: true });
+    });
+
+    function sliderIsMoving (clientX) {
+	const lastButton = findSliderButtonUnderMove(clientX);
 	doSliderButton(lastButton);
     }
-
-    // Touch
-    sliderButton.addEventListener("touchstart", defineGridTouch);
-    sliderButton.addEventListener("touchmove", defineGridTouch);
 });
 
 function findSliderButtonUnderMove (clientX) {
@@ -200,15 +211,6 @@ function findSliderButtonUnderMove (clientX) {
 
     return sliderButtons[x];
 };
-
-// Helper function to eliminate repeated code when handling touchstart
-// and touchmove
-function defineGridTouch (event) {
-    event.preventDefault();
-    const clientX = event.targetTouches[0].clientX;
-    const sliderButton = findSliderButtonUnderMove(clientX);
-    doSliderButton(sliderButton, true);
-}
 
 // DETECT SCREEN ORIENTATION CHANGE
 // https://dev.to/smpnjn/how-to-detect-device-orientation-with-javascript-29e5
