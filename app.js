@@ -53,11 +53,46 @@ const constructGridInternal = dimension => {
 
 // Store current grid information in a global object,
 // so that image-exporting code can use it later
-let gridInfo = {
-    CELL_WIDTH: null,
-    CELL_HEIGHT: null,
-    DIMENSION: null,
+const makeGridInfo = () => {
+    let CELL_WIDTH = null;
+    let CELL_HEIGHT = null;
+    let DIMENSION = null;
+    let CELL_VERTICAL_OFFSET = null;
+
+    // Discover the total height of all widgets above the grid: this
+    // height is the vertical offset for determining cell indices
+    function recomputeCellVerticalOffset () {
+	CELL_VERTICAL_OFFSET = [...document.querySelectorAll(".y-offset")].reduce((totalHeight, element) => {
+	    totalHeight += element.getClientRects()[0].height;
+	    return totalHeight;
+	}, 0);
+    };
+
+    function resetDimensions (cell_width, cell_height, dimension) {
+	CELL_WIDTH = cell_width;
+	CELL_HEIGHT = cell_height;
+	DIMENSION = dimension;
+    }
+
+    function getData () {
+	return {
+	    CELL_WIDTH,
+	    CELL_HEIGHT,
+	    DIMENSION,
+	    CELL_VERTICAL_OFFSET
+	};
+    }
+
+    recomputeCellVerticalOffset();
+
+    return {
+	recomputeCellVerticalOffset,
+	resetDimensions,
+	getData
+    };
 };
+
+const gridInfo = makeGridInfo();
 
 function constructGrid (dimension) {
     // Quick fix to avoid consecutive firing of this function based on
@@ -128,18 +163,11 @@ function constructGrid (dimension) {
     // Discover the width and height of a cell in the current grid
     // Note that we need only find and analyze the first cell returned by 'document.querySelector'
     const { width: CELL_WIDTH, height: CELL_HEIGHT } = document.querySelector(".cell").getClientRects()[0];
-    gridInfo = {...gridInfo, CELL_WIDTH, CELL_HEIGHT, DIMENSION: dimension};
-
-    // Discover the total height of all widgets above the grid: this
-    // height is the vertical offset for determining cell indices
-    const CELL_VERTICAL_OFFSET = [...document.querySelectorAll(".y-offset")].reduce((totalHeight, element) => {
-	totalHeight += element.getClientRects()[0].height;
-	return totalHeight;
-    }, 0);
+    gridInfo.resetDimensions(CELL_WIDTH, CELL_HEIGHT, dimension);
 
     function findCellUnderMove (clientX, clientY) {
 	const x = Math.floor(clientX / CELL_WIDTH);
-	const y = Math.floor((clientY - CELL_VERTICAL_OFFSET) / CELL_HEIGHT);
+	const y = Math.floor((clientY - gridInfo.getData().CELL_VERTICAL_OFFSET) / CELL_HEIGHT);
 
 	// a value of 'null' indicates that painting is occurring
 	// out of range of the Etch-a-Sketch board
@@ -224,7 +252,10 @@ function findSliderButtonUnderMove (clientX) {
 // cell dimensions, which ruins the element detection mechanism. So
 // the cleanest way out is to simply reset the grid when a change in
 // screen orientation takes place.
-window.matchMedia("(orientation: portrait)").addEventListener("change", resetGrid);
+window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
+    resetGrid();
+    gridInfo.recomputeCellVerticalOffset();
+});
 
 // CONTROL PANEL
 
