@@ -289,7 +289,12 @@ clearAllButton.addEventListener("click", () => {
 });
 
 exportButton.addEventListener("click", () => {
-    const content = ["This is a sample file content.", "if this is a second *line*, I'll be happy."]
+    const triplets = [
+	"255 0 0", "0 255 0", "255 255 0",
+	"255 255 0", "255 255 255", "0 0 0",
+    ];
+
+    const content = ["P3", "3 2", "255", ...triplets]
 	  .map(chunk => chunk.concat("\n"));
 
     // Create blob object with file content
@@ -298,7 +303,7 @@ exportButton.addEventListener("click", () => {
     );
 
     // Create and save the file using the FileWriter library
-    saveAs(blob, "textfile.txt");
+    saveAs(blob, "image_file.ppm");
 });
 
 
