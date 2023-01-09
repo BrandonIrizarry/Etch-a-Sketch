@@ -117,7 +117,7 @@ function constructGrid (dimension) {
 	    window.removeEventListener("mousemove", mouseIsPainting);
 	} else {
 	    const cell = findCellUnderMove(event.clientX, event.clientY);
-	    painter.paint(cell);
+	    if (cell !== null) painter.paint(cell);
 	}
     }
 
