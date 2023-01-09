@@ -55,7 +55,7 @@ function constructGrid (dimension) {
     const MAX_DIMENSION = 100;
 
     // First, remove the existing cells
-    [...document.querySelectorAll(".cell")].forEach(cell => cell.remove());
+    document.querySelectorAll(".cell").forEach(cell => cell.remove());
 
     // Keep the user-specified dimension at or below MAX_DIMENSION
     // (usually 100, as recommended in the project walkthough)
@@ -210,9 +210,6 @@ function defineGridTouch (event) {
 window.matchMedia("(orientation: portrait)").addEventListener("change", resetGrid);
 
 // CONTROL PANEL
-
-const radioButtons = [...document.querySelectorAll(`input[type="radio"]`)];
-const radioLabels = [...document.querySelectorAll(".control-panel > label")];
 
 const colorPicker = document.querySelector("#color-picker");
 const radioColorCustom = document.querySelector("#pen-color-custom");
