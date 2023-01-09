@@ -80,7 +80,10 @@ const makeGridInfo = () => {
 
     function fetchColors () {
 	const cells = [...document.querySelectorAll(".cell")];
-	return cells.map(cell => cell.style.backgroundColor);
+
+	// If a square hasn't been painted, the background color
+	// attribute is the empty string: fall back to white explicitly.
+	return cells.map(cell => cell.style.backgroundColor || "rgb(255, 255, 255)");
     }
 
     // Initialize
