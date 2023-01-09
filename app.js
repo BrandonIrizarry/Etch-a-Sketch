@@ -338,13 +338,26 @@ function clearAll () {
 
 clearAllButton.addEventListener("click", clearAll);
 
-exportButton.addEventListener("click", () => {
-    const triplets = [
-	"255 0 0", "0 255 0", "255 255 0",
-	"255 255 0", "255 255 255", "0 0 0",
-    ];
+function exportCellColors () {
+    let { CELL_WIDTH, CELL_HEIGHT } = gridInfo.getData();
+    CELL_WIDTH = Math.floor(CELL_WIDTH);
+    CELL_HEIGHT = Math.floor(CELL_HEIGHT);
 
-    const content = ["P3", "3 2", "255", ...triplets]
+    const colors = gridInfo.fetchColors()
+	  .map(color => {
+	      const regexp = /.+\((\d+), (\d+), (\d+).+/;
+	      const [_, red, green, blue] = color.match(regexp);
+	      return `${red} ${green} ${blue}`;
+	  });
+
+    return colors;
+}
+
+exportButton.addEventListener("click", () => {
+    const triplets = exportCellColors();
+    const dimension = gridInfo.getData().DIMENSION;
+
+    const content = ["P3", `${dimension} ${dimension}`, "255", ...triplets]
 	  .map(chunk => chunk.concat("\n"));
 
     // Create blob object with file content
