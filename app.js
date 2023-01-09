@@ -289,6 +289,7 @@ colorPicker.addEventListener("change", () => {
 // RESETTING THE GRID
 
 function resetGrid () {
+    clearAll();
     doSliderButton(initialButton, true);
 }
 
