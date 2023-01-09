@@ -177,3 +177,31 @@ span {
 	padding: 0;
     }
 }
+
+/* For landscape mobile viewports and upward */
+@media only screen and (min-width: 600px) and (min-height: 800px) {
+    body {
+	display: grid;
+	grid-template-areas:
+	    "header header section section"
+	    "main main section section"
+	    "footer footer section section";
+	grid-auto-columns: 1fr;
+	grid-template-rows: 1fr 5fr 1fr;
+	padding-right: 20px;
+    }
+
+    .cell-grid {
+	flex: 1;
+    }
+
+    footer, .control-panel {
+	padding: 0;
+    }
+
+    .control-panel {
+	    flex-direction: column;
+	    flex-wrap: nowrap;
+	    align-items: center;
+    }
+}
