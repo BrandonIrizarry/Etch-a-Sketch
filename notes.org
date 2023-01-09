@@ -112,12 +112,12 @@ profile.
   4. [X] Implement "random colors" feature
   5. [X] Change background of psychedelic button
 
-* Priorities <2023-01-08 Sun> [0/1]
+* Priorities <2023-01-08 Sun> [1/2]
   1. [ ] Adjust flex-arrangement of control panel buttons, so we can
      restore a flex-basis of 300px on the cell grid
      - This may only be necessary for mobile devices; we can keep the
        current arrangement for larger screens.
-  2. [ ] It looks like 'constructGrid' is getting called /twice/ per
+  2. [X] It looks like 'constructGrid' is getting called /twice/ per
      action; I should investigate why.
 
 

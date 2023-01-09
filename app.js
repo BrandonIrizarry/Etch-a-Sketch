@@ -60,6 +60,10 @@ let gridInfo = {
 };
 
 function constructGrid (dimension) {
+    // Quick fix to avoid consecutive firing of this function based on
+    // user-events
+    if (dimension === gridInfo.DIMENSION) return;
+
     const MAX_DIMENSION = 100;
 
     // First, remove the existing cells
