@@ -51,6 +51,14 @@ const constructGridInternal = dimension => {
     return cells;
 };
 
+// Store current grid information in a global object,
+// so that image-exporting code can use it later
+let gridInfo = {
+    CELL_WIDTH: null,
+    CELL_HEIGHT: null,
+    DIMENSION: null,
+};
+
 function constructGrid (dimension) {
     const MAX_DIMENSION = 100;
 
@@ -116,6 +124,8 @@ function constructGrid (dimension) {
     // Discover the width and height of a cell in the current grid
     // Note that we need only find and analyze the first cell returned by 'document.querySelector'
     const { width: CELL_WIDTH, height: CELL_HEIGHT } = document.querySelector(".cell").getClientRects()[0];
+    gridInfo = {...gridInfo, CELL_WIDTH, CELL_HEIGHT, DIMENSION: dimension};
+    console.log(gridInfo, event);
 
     // Discover the total height of all widgets above the grid: this
     // height is the vertical offset for determining cell indices
@@ -155,11 +165,11 @@ function doSliderButton (sliderButton, activate=false) {
     previousSliderButtonIndex = sliderButton.dataset.index;
 }
 
-const MAGIC_EVENT = "click";
-
 sliderButtons.forEach(sliderButton => {
     // Mouse
-    sliderButton.addEventListener(MAGIC_EVENT, event => doSliderButton(event.target, true));
+    sliderButton.addEventListener("click", event => {
+	doSliderButton(event.target);
+    });
 
     sliderButton.addEventListener("mousedown", event => {
 	event.preventDefault();
@@ -272,7 +282,7 @@ colorPicker.addEventListener("change", () => {
 // RESETTING THE GRID
 
 function resetGrid () {
-    initialButton.dispatchEvent(new Event(MAGIC_EVENT));
+    doSliderButton(initialButton, true);
 }
 
 // AUXILIARY BUTTONS (CLEAR ALL, EXPORT)

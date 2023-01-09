@@ -117,6 +117,9 @@ profile.
      restore a flex-basis of 300px on the cell grid
      - This may only be necessary for mobile devices; we can keep the
        current arrangement for larger screens.
+  2. [ ] It looks like 'constructGrid' is getting called /twice/ per
+     action; I should investigate why.
+
 
 * Exporting
 ** PPM File Format
