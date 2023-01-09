@@ -158,6 +158,7 @@ span {
     font-weight: bold;
 }
 
+/* Target mobile landscape usage */
 @media only screen and (orientation: landscape) {
     body {
 	display: grid;
@@ -175,10 +176,12 @@ span {
     .control-panel {
 	flex: 1;
 	padding: 0;
+	flex-direction: column;
+	margin: 0 auto;
     }
 }
 
-/* For landscape mobile viewports and upward */
+/* Target desktop usage */
 @media only screen and (min-width: 600px) and (min-height: 800px) {
     body {
 	display: grid;
@@ -191,17 +194,14 @@ span {
 	padding-right: 20px;
     }
 
-    .cell-grid {
-	flex: 1;
-    }
-
-    footer, .control-panel {
-	padding: 0;
+    footer {
+	display: flex;
     }
 
     .control-panel {
-	    flex-direction: column;
-	    flex-wrap: nowrap;
-	    align-items: center;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(3, 100px);
+	margin: auto;
     }
 }

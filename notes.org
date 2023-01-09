@@ -112,13 +112,14 @@ profile.
   4. [X] Implement "random colors" feature
   5. [X] Change background of psychedelic button
 
-* Priorities <2023-01-08 Sun> [1/2]
-  1. [ ] Adjust flex-arrangement of control panel buttons, so we can
+* Priorities <2023-01-08 Sun> [2/2]
+  1. [X] Adjust flex-arrangement of control panel buttons, so we can
      restore a flex-basis of 300px on the cell grid
      - This may only be necessary for mobile devices; we can keep the
        current arrangement for larger screens.
      - The point is to improve usability on a smartphone - I need to
        be able to aim my finger at the cell I want to paint!.
+     - We didn't do quite this, but we fixed the underlying issue.
   2. [X] It looks like 'constructGrid' is getting called /twice/ per
      action; I should investigate why.
 
