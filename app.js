@@ -1,7 +1,7 @@
 "use strict";
 
 const makePainter = () => {
-    let penColor = "black";
+    let penColor = "rgb(0, 0, 0)";
     let random = false;
 
     return {
@@ -24,7 +24,7 @@ const makePainter = () => {
 	    DOMelement.style.backgroundColor = randomColor ?? penColor;
 	},
 
-	changePenColor (newColor = "black") {
+	changePenColor (newColor = "rgb(0, 0, 0)") {
 	    penColor = newColor;
 	}
     };
@@ -78,12 +78,19 @@ const makeGridInfo = () => {
 	};
     }
 
+    function fetchColors () {
+	const cells = [...document.querySelectorAll(".cell")];
+	return cells.map(cell => cell.style.backgroundColor);
+    }
+
+    // Initialize
     recomputeCellVerticalOffset();
 
     return {
 	recomputeCellVerticalOffset,
 	resetDimensions,
-	getData
+	getData,
+	fetchColors,
     };
 };
 
@@ -178,7 +185,7 @@ const initialButton = sliderButtons[START_INDEX];
 
 function doSliderButton (sliderButton, activate=false) {
     sliderButtons[previousSliderButtonIndex - 1].style.backgroundColor = "red";
-    sliderButton.style.backgroundColor = "black";
+    sliderButton.style.backgroundColor = "rgb(0, 0, 0)";
     previousSliderButtonIndex = sliderButton.dataset.index;
 
     if (activate) {
@@ -277,8 +284,8 @@ function resetLabelSettings () {
     });
 }
 
-labelBlack.addEventListener("click", () => painter.changePenColor("black"));
-labelWhite.addEventListener("click", () => painter.changePenColor("white"));
+labelBlack.addEventListener("click", () => painter.changePenColor("rgb(0, 0, 0)"));
+labelWhite.addEventListener("click", () => painter.changePenColor("rgb(255, 255, 255)"));
 
 labelLuckyPicker.addEventListener("click", () => {
     // https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-11.php
@@ -322,7 +329,7 @@ const exportButton = document.querySelector("#export");
 
 function clearAll () {
     document.querySelectorAll(".cell").forEach(cell => {
-      cell.style.backgroundColor = "white";
+      cell.style.backgroundColor = "rgb(255, 255, 255)";
   });
 }
 
