@@ -125,7 +125,6 @@ function constructGrid (dimension) {
     // Note that we need only find and analyze the first cell returned by 'document.querySelector'
     const { width: CELL_WIDTH, height: CELL_HEIGHT } = document.querySelector(".cell").getClientRects()[0];
     gridInfo = {...gridInfo, CELL_WIDTH, CELL_HEIGHT, DIMENSION: dimension};
-    console.log(gridInfo, event);
 
     // Discover the total height of all widgets above the grid: this
     // height is the vertical offset for determining cell indices
