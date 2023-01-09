@@ -158,33 +158,22 @@ span {
     font-weight: bold;
 }
 
-/* For landscape mobile viewports and upward */
-@media only screen and (min-width: 600px) {
+@media only screen and (orientation: landscape) {
     body {
 	display: grid;
 	grid-template-areas:
-	    "header header section section"
-	    "main main section section"
-	    "footer footer section section";
+	    "header section"
+	    "main section";
 	grid-auto-columns: 1fr;
-	grid-template-rows: 1fr 5fr 1fr;
-	padding-right: 20px;
+	grid-template-rows: 1fr 5fr;
     }
 
-    .cell-grid {
+    footer {
+	display: none;
+    }
+
+    .control-panel {
 	flex: 1;
-    }
-
-    footer, .control-panel {
 	padding: 0;
-    }
-
-    /* For true desktop viewports: avoid the buttons looking overstretched */
-    @media (min-height: 800px) {
-	.control-panel {
-	    flex-direction: column;
-	    flex-wrap: nowrap;
-	    align-items: center;
-	}
     }
 }
