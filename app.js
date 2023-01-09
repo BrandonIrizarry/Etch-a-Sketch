@@ -167,7 +167,7 @@ function doSliderButton (sliderButton, activate=false) {
 sliderButtons.forEach(sliderButton => {
     // Mouse
     sliderButton.addEventListener("click", event => {
-	doSliderButton(event.target);
+	doSliderButton(event.target, true);
     });
 
     sliderButton.addEventListener("mousedown", event => {
@@ -188,6 +188,9 @@ sliderButtons.forEach(sliderButton => {
     // Touch
     sliderButton.addEventListener("touchstart", event => {
 	event.preventDefault();
+
+	// Mimic mouse-click behavior
+	doSliderButton(event.target, true);
 
 	// only works with left mouse-click (button 0)
 	const fn = event => sliderIsMoving(event.targetTouches[0].clientX);
