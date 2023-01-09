@@ -5,11 +5,6 @@ const makePainter = () => {
     let random = false;
 
     return {
-	// I suspect the 'forcePaint' flag is mainly useful for
-	// testing, when I switch from desktop view to responsive view
-	// in the same development session, and 'paintOn' remains
-	// cleared from when I was in desktop view, which is of course
-	// undesirable
 	setRandom () {
 	    random = true;
 	},
@@ -138,9 +133,6 @@ function constructGrid (dimension) {
 
 	cell.addEventListener("touchstart", event => {
 	    event.preventDefault();
-
-	    // Using painter, even swiping falls under the influence of 'paintOn',
-	    // so we must set the 'forcePaint' flag here
 	    painter.paint(event.target);
 	});
 
