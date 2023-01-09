@@ -117,6 +117,8 @@ profile.
      restore a flex-basis of 300px on the cell grid
      - This may only be necessary for mobile devices; we can keep the
        current arrangement for larger screens.
+     - The point is to improve usability on a smartphone - I need to
+       be able to aim my finger at the cell I want to paint!.
   2. [X] It looks like 'constructGrid' is getting called /twice/ per
      action; I should investigate why.
 
@@ -130,7 +132,7 @@ since pixel color values are implicitly ordered by row, column (left
 to right, top to bottom).
 
 Among the easiest formats for creating images using a text editor is
-Netpbm format - Wikipedia
+[[https://en.wikipedia.org/wiki/Netpbm][Netpbm format - Wikipedia]]
 
 Once a PPM image file is created, it can be loaded into an image
 editor and then saved in other format[s]: TIFF, PNG, GIF, JPEG,
