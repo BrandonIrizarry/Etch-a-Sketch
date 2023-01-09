@@ -157,6 +157,8 @@ a:is(:link, :visited, :hover, :active) {
 span {
     font-weight: bold;
 }
+
+/* For landscape mobile viewports and upward */
 @media only screen and (min-width: 600px) {
     body {
 	display: grid;
@@ -177,9 +179,12 @@ span {
 	padding: 0;
     }
 
-    .control-panel {
-	flex-direction: column;
-	flex-wrap: nowrap;
-	align-items: center;
+    /* For true desktop viewports: avoid the buttons looking overstretched */
+    @media (min-height: 800px) {
+	.control-panel {
+	    flex-direction: column;
+	    flex-wrap: nowrap;
+	    align-items: center;
+	}
     }
 }
