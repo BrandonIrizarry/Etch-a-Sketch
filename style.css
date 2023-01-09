@@ -66,9 +66,8 @@ body {
 .control-panel {
     padding-top: 20px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
     gap: 5px;
     grid-area: section;
 }
@@ -176,5 +175,11 @@ span {
 
     footer, .control-panel {
 	padding: 0;
+    }
+
+    .control-panel {
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
     }
 }
