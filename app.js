@@ -181,13 +181,12 @@ sliderButtons.forEach(sliderButton => {
 
     function sliderIsMoving (event) {
 	const lastButton = findSliderButtonUnderMove(event.clientX);
+	doSliderButton(lastButton);
 
-	if (event.buttons === 0) {
+	window.addEventListener("mouseup", () => {
 	    window.removeEventListener("mousemove", sliderIsMoving);
 	    doSliderButton(lastButton, true);
-	} else {
-	    doSliderButton(lastButton);
-	}
+	}, { once: true });
     }
 
     // Touch
