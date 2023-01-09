@@ -154,15 +154,14 @@ let previousSliderButtonIndex = START_INDEX;
 const initialButton = sliderButtons[START_INDEX];
 
 function doSliderButton (sliderButton, activate=false) {
-    const index = parseInt(sliderButton.dataset.index) - 1;
-
-    if (activate) {
-	constructGrid(index);
-    }
-
     sliderButtons[previousSliderButtonIndex - 1].style.backgroundColor = "red";
     sliderButton.style.backgroundColor = "black";
     previousSliderButtonIndex = sliderButton.dataset.index;
+
+    if (activate) {
+	const index = parseInt(sliderButton.dataset.index) - 1;
+	constructGrid(index);
+    }
 }
 
 sliderButtons.forEach(sliderButton => {
