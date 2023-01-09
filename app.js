@@ -296,11 +296,13 @@ function resetGrid () {
 const clearAllButton = document.querySelector("#clear-all");
 const exportButton = document.querySelector("#export");
 
-clearAllButton.addEventListener("click", () => {
+function clearAll () {
     document.querySelectorAll(".cell").forEach(cell => {
-	cell.style.backgroundColor = "white";
-    });
-});
+      cell.style.backgroundColor = "white";
+  });
+}
+
+clearAllButton.addEventListener("click", clearAll);
 
 exportButton.addEventListener("click", () => {
     const triplets = [

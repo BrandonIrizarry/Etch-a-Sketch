@@ -122,6 +122,15 @@ profile.
   2. [X] It looks like 'constructGrid' is getting called /twice/ per
      action; I should investigate why.
 
+* Priorities <2023-01-09 Mon> [/]
+  1. [ ] The "patch" for avoiding duplicate grid creation has bit me a
+     bit here: if I test rotating the viewport, it looks as if
+     resetting isn't happening, since I've never changed the
+     dimensions for that session. I may want to explicitly clear the
+     board on rotation.
+  2. [ ] The rotation hook should include a change in the vertical
+     offset measurement. The vertical offset needs to become global,
+     possibly part of 'gridInfo'.
 
 * Exporting
 ** PPM File Format
