@@ -338,8 +338,38 @@ function clearAll () {
 
 clearAllButton.addEventListener("click", clearAll);
 
+// EXPORTING TO AN IMAGE FILE
+
+// Define 'partition' and 'repeat', which are used to construct the
+// correctly dilated image piecemeal.
+
+// Partition: Split an array into even chunks.
+// https://stackabuse.com/how-to-split-an-array-into-even-chunks-in-javascript/
+function partition (arr, chunkSize) {
+    const res = [];
+
+    for (let i = 0; i < arr.length; i += chunkSize) {
+        const chunk = arr.slice(i, i + chunkSize);
+        res.push(chunk);
+    }
+
+    return res;
+}
+
+// Repeat: Repeat the contents of an array within itself
+// e.g. repeat([1, 2, 3], 3) => [1, 1, 1, 2, 2, 2, 3, 3, 3]
+function repeat (arr, times) {
+    let result = [];
+
+    for (let i = 0; i < times; i++) {
+	result = result.concat(arr);
+    }
+
+    return result;
+}
+
 function exportCellColors () {
-    let { CELL_WIDTH, CELL_HEIGHT } = gridInfo.getData();
+    let { CELL_WIDTH, CELL_HEIGHT, DIMENSION } = gridInfo.getData();
     CELL_WIDTH = Math.floor(CELL_WIDTH);
     CELL_HEIGHT = Math.floor(CELL_HEIGHT);
 
@@ -350,14 +380,26 @@ function exportCellColors () {
 	      return `${red} ${green} ${blue}`;
 	  });
 
-    return colors;
+    /*
+     * Dilate the current cell grid in a series of steps, using the
+     * primitive "operators", 'partition' and 'repeat', defined above.
+     * I used temporary storage ('first', 'second' ...)
+     * generously when I devised the solution, and that approach is retained here.
+     */
+    const first = partition(colors, 1);
+    const second = first.map(p => repeat(p, CELL_WIDTH));
+    const third = partition(second, DIMENSION);
+    const fourth = third.map(p => repeat(p, CELL_HEIGHT));
+    const fifth = fourth.flat().flat();
+
+    return fifth;
 }
 
 exportButton.addEventListener("click", () => {
     const triplets = exportCellColors();
-    const dimension = gridInfo.getData().DIMENSION;
+    const { DIMENSION: dimension, CELL_WIDTH: width, CELL_HEIGHT: height } = gridInfo.getData();
 
-    const content = ["P3", `${dimension} ${dimension}`, "255", ...triplets]
+    const content = ["P3", `${dimension * Math.floor(width)} ${dimension * Math.floor(height)}`, "255", ...triplets]
 	  .map(chunk => chunk.concat("\n"));
 
     // Create blob object with file content

@@ -90,10 +90,11 @@ profile.
   picker seamlessly with the radio element.
 + [ ] Using the application on desktop appears to be a bit
   confusing... will instructions be enough?
-* Priorities <2023-01-04 Wed> [1/5]
+* Priorities <2023-01-04 Wed> [2/5]
   1. [X] Add a "clear all" button.
   2. [ ] Design the slider to use a color gradient.
-  3. [ ] Export to bmp/png.
+  3. [X] Export to bmp/png.
+     - Export to PPM, since it's by far the easiest one to work with.
   4. [ ] Save existing image when resizing.
   5. [ ] Usage instructions.
 
@@ -132,6 +133,7 @@ profile.
   2. [X] The rotation hook should include a change in the vertical
      offset measurement. The vertical offset needs to become global,
      possibly part of 'gridInfo'.
+  3. [ ] Write a comprehensive README.org file.
 
 * Exporting
 ** PPM File Format
