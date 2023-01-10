@@ -1,5 +1,74 @@
 * Etch-a-Sketch
+  This is an implementation of The Odin Project's [[https://www.theodinproject.com/lessons/foundations-etch-a-sketch][Etch-a-Sketch]] project.
 
-This is an implementation of The Odin Project's [[https://www.theodinproject.com/lessons/foundations-etch-a-sketch][Etch-a-Sketch]] project.
+** Instructions
+*** Basic Use: Painting
+    To start painting, click and drag (or touch and swipe) on the
+    white grid-canvas. Note that "black" is the default pen color,
+    selected for you when the page launches. See the "Control Panel"
+    section below for details on how to change pen settings.
 
+*** The Slider
+    This Etch-a-Sketch project uses a slider widget implemented
+    completely from scratch. The slider is a red bar situated directly
+    on top of the grid-canvas. There is a thin black stripe whose
+    position indicates the current grid size.
 
+    Click and drag (or touch and swipe) on the slider area to move the
+    black stripe around, thus changing the grid size.
+
+*** The Control Panel
+    There is a control panel that controls various pen settings, as well
+    as a few other actions.
+
+    + Black
+      - Sets the pen color to black.
+    + White
+      - Sets the pen color to white. Use this pen color to erase painted
+	cells.
+    + Custom
+      - Launches an HTML5 color-picker. Use it to select the desired pen
+	color.
+    + "I'm feeling lucky"
+      - Sets the pen color to a (single) random color. This is different
+	from "psychedelic" (see below).
+    + Psychedelic
+      - (/As suggested in the Extra Credit/)
+      - Changes the pen color as long as the pen is held down (either by
+	mouse or by touch/swiping), creating a rainbow effect as you draw.
+      - The page logo avails itself of this feature.
+
+    The preceding settings comprise a set of radio buttons, to enforce
+    mutual exclusivity. The next two are more general in nature:
+
+    + Clear all
+      - Sets all cells to white (the default background color).
+    + Export
+      - Arguably the /pièce de résistance/ of this project.
+      - Export the current drawing to the user's local filesystem as a PPM
+	image file (see [[https://en.wikipedia.org/wiki/Netpbm#PPM_example][this section]] of the Netpbm Wikipedia article).
+
+** A Note on Mobile Devices
+   The site is designed to be usable both on desktop and mobile
+   devices. When using a mobile device, a stylo provides an optimal
+   experience, especially for larger grid sizes.
+
+   Note that changing device orientation currently resets the
+   grid. This is, unfortunately, due to an internal implementation
+   detail involving the correlation between the cell currently
+   selected, and the cell that will be actually painted, which is
+   dependent on the height of certain page elements (which can, in
+   general, change when the orientation changes, due to the use of
+   responsive CSS display techniques like Flexbox and Grid).
+
+** A Note on the Page Logo
+   A major goal for this project was to make something /useful/, even
+   in a small capacity.
+
+   In that spirit, and as one might guess after viewing the page, I
+   made the logo with this application! I then converted the outputted
+   PPM file to PNG format using ~ffmpeg~, for example:
+
+   #+begin_example
+   ffmpeg -i image_file.ppm etch-a-sketch-logo.png
+   #+end_example
