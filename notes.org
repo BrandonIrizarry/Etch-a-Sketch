@@ -152,3 +152,9 @@ etc. For Windows users, I recommend IrfanView.
 
 ** FileSaver Library
 https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
+** Converting to PNG
+The following incantation works:
+
+ffmpeg -i image.ppm out.png
+
+See [[https://superuser.com/questions/1722381/convert-ppm-to-png][this Superuser Stack Exchange post]].
