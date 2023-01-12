@@ -339,6 +339,7 @@ function resetGrid () {
 const clearAllButton = document.querySelector("#clear-all");
 const exportButton = document.querySelector("#export");
 
+/* TODO: Don't use white, use current background color. */
 function clearAll () {
     document.querySelectorAll(".cell").forEach(cell => {
       cell.style.backgroundColor = "rgb(255, 255, 255)";
