@@ -270,7 +270,7 @@ window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
 
 // CONTROL PANEL
 
-const colorPicker = document.querySelector("#color-picker");
+const colorPicker = document.querySelector(".color-picker#foreground");
 const radioColorCustom = document.querySelector("#pen-color-custom");
 
 const labelBlack = document.querySelector(`label[for="pen-color-black"]`);
