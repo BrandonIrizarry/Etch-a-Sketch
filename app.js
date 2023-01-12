@@ -4,6 +4,7 @@ const makePainter = () => {
     let penColor = "rgb(0, 0, 0)";
     let random = false;
     let backgroundColor = "rgb(255, 255, 255)";
+    let customForegroundColor = "rgb(0, 0, 0)";
 
     return {
 	setRandom () {
@@ -39,6 +40,18 @@ const makePainter = () => {
 
 	getBackgroundColor () {
 	    return backgroundColor;
+	},
+
+	changeCustomForegroundColor (newForegroundColor = "rgb(0, 0, 0)") {
+	    customForegroundColor = newForegroundColor;
+	},
+
+	useCustomForegroundColor () {
+	    penColor = customForegroundColor;
+	},
+
+	getCustomForegroundColor () {
+	    return customForegroundColor;
 	}
     };
 };
@@ -276,7 +289,6 @@ window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
 
 // CONTROL PANEL
 
-const colorPicker = document.querySelector(".color-picker#foreground");
 const radioColorCustom = document.querySelector("#pen-color-custom");
 const radioWhite = document.querySelector("#pen-color-white");
 
@@ -303,12 +315,14 @@ function resetLabelSettings () {
     });
 
     // Make sure bg-color button keeps the same color representing the
-    // current background color
+    // current background color; ditto for the custom foreground color
     labelWhite.style.backgroundColor = painter.getBackgroundColor();
+    labelColorCustom.style.backgroundColor = painter.getCustomForegroundColor();
 }
 
 labelBlack.addEventListener("click", () => painter.changePenColor("rgb(0, 0, 0)"));
 labelWhite.addEventListener("click", painter.useBackgroundColor);
+labelColorCustom.addEventListener("click", painter.useCustomForegroundColor);
 
 labelLuckyPicker.addEventListener("click", () => {
     // https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-11.php
@@ -328,17 +342,6 @@ labelPsychedelic.addEventListener("click", () => {
     labelPsychedelic.style.background = "linear-gradient(135deg, red 0%, orange 25%, yellow 50%, green 75%, blue 100%)";
 });
 
-// COLOR PICKER
-
-colorPicker.addEventListener("click", () => {
-    radioColorCustom.checked = true;
-});
-
-colorPicker.addEventListener("change", () => {
-    labelColorCustom.style.backgroundColor = colorPicker.value;
-    painter.changePenColor(colorPicker.value);
-});
-
 // RESETTING THE GRID
 
 function resetGrid () {
@@ -346,9 +349,18 @@ function resetGrid () {
     doSliderButton(initialButton, true);
 }
 
-// AUXILIARY BUTTONS (CLEAR ALL, EXPORT)
+// AUXILIARY BUTTONS (CLEAR ALL, EXPORT, BACKGROUND COLOR, SETTING A CUSTOM FOREGROUND COLOR)
 const clearAllButton = document.querySelector("#clear-all");
 const exportButton = document.querySelector("#export");
+const backgroundColorPicker = document.querySelector(".color-picker#background");
+const foregroundColorPicker = document.querySelector(".color-picker#foreground");
+
+foregroundColorPicker.addEventListener("change", () => {
+    painter.changeCustomForegroundColor(foregroundColorPicker.value);
+    labelColorCustom.style.backgroundColor = painter.getCustomForegroundColor();
+
+    if (radioColorCustom.checked) painter.useCustomForegroundColor();
+});
 
 function clearAll () {
     document.querySelectorAll(".cell").forEach(cell => {
@@ -357,8 +369,6 @@ function clearAll () {
 }
 
 clearAllButton.addEventListener("click", clearAll);
-
-const backgroundColorPicker = document.querySelector(".color-picker#background");
 
 backgroundColorPicker.addEventListener("change", () => {
     // Leverage the DOM API to convert color-picker's value to rgb, to
