@@ -35,6 +35,10 @@ const makePainter = () => {
 
 	useBackgroundColor () {
 	    penColor = backgroundColor;
+	},
+
+	getBackgroundColor () {
+	    return backgroundColor;
 	}
     };
 };
@@ -295,6 +299,10 @@ function resetLabelSettings () {
 	label.style.background = ""; // for when "psychedelic" had been selected
 	label.style.backgroundColor = initialLabelBackgroundColor;
     });
+
+    // Make sure bg-color button keeps the same color representing the
+    // current background color
+    labelWhite.style.backgroundColor = painter.getBackgroundColor();
 }
 
 labelBlack.addEventListener("click", () => painter.changePenColor("rgb(0, 0, 0)"));
