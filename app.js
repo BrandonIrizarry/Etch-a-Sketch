@@ -360,7 +360,14 @@ clearAllButton.addEventListener("click", clearAll);
 const backgroundColorPicker = document.querySelector(".color-picker#background");
 
 backgroundColorPicker.addEventListener("change", () => {
-    const newBgColor = backgroundColorPicker.value;
+    // Leverage the DOM API to convert color-picker's value to rgb, to
+    // facilitate equality check later
+    // https://stackoverflow.com/a/68626811
+    const tempElement = document.createElement("div");
+    tempElement.style.cssText = `color: ${backgroundColorPicker.value}`;
+    const newBgColor = tempElement.style.color;
+
+    const oldBackgroundColor = painter.getBackgroundColor();
 
     labelWhite.style.backgroundColor = newBgColor;
     painter.changeBackgroundColor(newBgColor);
@@ -368,6 +375,15 @@ backgroundColorPicker.addEventListener("change", () => {
     // If the "use bg-color" radio button is checked, make sure
     // we start painting with our newly selected color
     if (radioWhite.checked) painter.useBackgroundColor();
+
+    // Change existing background-color cells to new background color
+    document.querySelectorAll(".cell").forEach(cell => {
+	const cellBgColor = cell.style.backgroundColor;
+
+	if (cellBgColor === oldBackgroundColor || cellBgColor === "") {
+	    cell.style.backgroundColor = painter.getBackgroundColor();
+	}
+    });
 });
 
 // EXPORTING TO AN IMAGE FILE
