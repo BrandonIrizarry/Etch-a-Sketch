@@ -85,6 +85,11 @@ label, .aux {
     align-items: center;
 }
 
+label[for="pen-color-white"] {
+    color: black;
+    background-color: white;
+}
+
 .control {
     /* Child flex attributes */
     flex: 1;
