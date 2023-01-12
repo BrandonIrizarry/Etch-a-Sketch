@@ -146,13 +146,22 @@ profile.
 ** Priorities <2023-01-10 Tue>
    These are now based on user feedback!
 
-*** TODO Change background color
+*** DONE Change background color
     Designate a program-persistent color (e.g., "white") as the
     background color. Probably would go in 'gridInfo'.
 
 *** TODO Implement a "shader" feature
     This would implement a part of the extra credit I had deliberately
     left out.
+
+* Known bugs
+** 'change' event on color picker buggy 
+   Whenever this button is checked, the color should be used, and all
+   corresponding effects enabled. Right now, if I simply go back to
+   the current custom color setting (which my browsers will let me
+   do), since a 'change' event isn't being fired, the old pen setting
+   is still being used, and the button's background color doesn't
+   change to the selected color.
 
 * Exporting
 ** PPM File Format
