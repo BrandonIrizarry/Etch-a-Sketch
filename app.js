@@ -53,6 +53,8 @@ const constructGridInternal = dimension => {
 	// Construct a new cell as the current array element
 	const cell = document.createElement("div");
 	cell.classList.add("cell");
+	cell.style.backgroundColor = painter.getBackgroundColor();
+
 	return cell;
     });
 
