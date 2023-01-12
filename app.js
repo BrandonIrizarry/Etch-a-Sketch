@@ -348,6 +348,12 @@ function clearAll () {
 
 clearAllButton.addEventListener("click", clearAll);
 
+const backgroundColorPicker = document.querySelector(".color-picker#background");
+
+backgroundColorPicker.addEventListener("change", () => {
+    labelWhite.style.backgroundColor = backgroundColorPicker.value;
+});
+
 // EXPORTING TO AN IMAGE FILE
 
 // Define 'partition' and 'repeat', which are used to construct the
