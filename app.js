@@ -365,6 +365,8 @@ backgroundColorPicker.addEventListener("change", () => {
     labelWhite.style.backgroundColor = newBgColor;
     painter.changeBackgroundColor(newBgColor);
 
+    // If the "use bg-color" radio button is checked, make sure
+    // we start painting with our newly selected color
     if (radioWhite.checked) painter.useBackgroundColor();
 });
 
