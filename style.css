@@ -212,7 +212,16 @@ span {
     .control-panel {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(3, 100px);
+	grid-template-rows: repeat(4, 100px);
 	margin: auto;
+	padding-left: 10px;
+    }
+
+    label, .aux {
+	width: auto;
+    }
+
+    label[for="pen-color-psychedelic"], .aux {
+	grid-column: 1 / span 2;
     }
 }
