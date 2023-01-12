@@ -114,8 +114,10 @@ label, .aux {
 
 /* See https://stackoverflow.com/a/46988880 for context about the next
    two selectors */
-label[for="pen-color-custom"] {
-    position: relative; /* For positioning the color picker */
+
+/* This selector lets the targeted element "host" a color-picker */
+.color-picker-container {
+    position: relative;
 }
 
 /* Make the color picker invisible, and also span the entire swath of
