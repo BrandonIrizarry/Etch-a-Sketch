@@ -9,7 +9,7 @@ unfortunately (for this case) merges them.
   paint regardless, which can lead to a slightly frustrating
   experience.
 
-+ A lot of the projects have the person's Github account name, e.g., 
++ A lot of the projects have the person's Github account name, e.g.,
 
 "Built and designed by Silinde87 | ⚙"
 
@@ -31,7 +31,7 @@ profile.
   of features might be:
   1. Pick the current color.
 
-  2. Pick the current /background/ color. 
+  2. Pick the current /background/ color.
 
   3. A color /fill/, like the paint bucket in MS Paint. This sounds
      like an interesting technical challenge.
@@ -58,7 +58,7 @@ profile.
   should be the default background color. One project even rounds the
   corners of the cells slightly.
 
-+ Also... some people's Githubs have README.md "splash" pages. 
++ Also... some people's Githubs have README.md "splash" pages.
 * Checklist [6/14]
 + [X] Enable for mobile.
   - What should be the default behavior? Dragging with one's finger
@@ -102,7 +102,7 @@ profile.
 * Priorities <2023-01-06 Fri> [2/2]
   1. [X] Slider: click and drag with the mouse, don't use mouseover
      - mouseover is too distracting when you want to do other things.
-  2. [X] Bug: Cursor icon toggles incorrectly on desktop 
+  2. [X] Bug: Cursor icon toggles incorrectly on desktop
      - Click and drag to draw cells, not mouseover "state".
 
 * Priorities <2023-01-07 Sat> [5/5]
@@ -141,6 +141,18 @@ profile.
      - It could be something as simple as "change all white cells to
        light blue cells". Another possiblity is to instead enable
        exporting with a different background color.
+
+* Post-release
+** Priorities <2023-01-10 Tue>
+   These are now based on user feedback!
+
+*** TODO Change background color
+    Designate a program-persistent color (e.g., "white") as the
+    background color. Probably would go in 'gridInfo'.
+
+*** TODO Implement a "shader" feature
+    This would implement a part of the extra credit I had deliberately
+    left out.
 
 * Exporting
 ** PPM File Format
