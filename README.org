@@ -23,9 +23,12 @@
 
     + Black
       - Sets the pen color to black.
-    + White
-      - Sets the pen color to white. Use this pen color to erase painted
-	cells.
+    + Use Background Color
+      - Sets the pen color to the current background color. You can
+        use this setting as an "eraser" feature.
+      - Note that the background color of this button changes to
+        reflect the currently active background color. This stays in
+        effect regardless of whether this is the current pen setting.
     + Custom
       - Launches an HTML5 color-picker. Use it to select the desired pen
 	color.
@@ -39,14 +42,25 @@
       - The page logo avails itself of this feature.
 
     The preceding settings comprise a set of radio buttons, to enforce
-    mutual exclusivity. The next two are more general in nature:
+    mutual exclusivity. There is also a set of auxiliary buttons, that
+    control more general settings:
 
     + Clear all
-      - Sets all cells to white (the default background color).
+      - Paints all cells with the current background color.
     + Export
       - Arguably the /pièce de résistance/ of this project.
       - Export the current drawing to the user's local filesystem as a PPM
 	image file (see [[https://en.wikipedia.org/wiki/Netpbm#PPM_example][this section]] of the Netpbm Wikipedia article).
+    + Change background color
+      - Changes the current background color, using an HTML5 color
+        picker.
+      - The project implements the notion of a "background color" by
+        arbitrarily designating a given color as such; any cells
+        painted with that color are considered "background
+        cells". When changing the background color, the code simply
+        locates all cells with that particular color, and changes them
+        accordingly.
+      - There is no concept of layers in this project.
 
 ** A Note on Mobile Devices
    The site is designed to be usable both on desktop and mobile
