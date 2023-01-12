@@ -351,7 +351,10 @@ clearAllButton.addEventListener("click", clearAll);
 const backgroundColorPicker = document.querySelector(".color-picker#background");
 
 backgroundColorPicker.addEventListener("change", () => {
-    labelWhite.style.backgroundColor = backgroundColorPicker.value;
+    const newBgColor = backgroundColorPicker.value;
+
+    labelWhite.style.backgroundColor = newBgColor;
+    painter.changeBackgroundColor(newBgColor);
 });
 
 // EXPORTING TO AN IMAGE FILE
