@@ -272,6 +272,7 @@ window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
 
 const colorPicker = document.querySelector(".color-picker#foreground");
 const radioColorCustom = document.querySelector("#pen-color-custom");
+const radioWhite = document.querySelector("#pen-color-white");
 
 const labelBlack = document.querySelector(`label[for="pen-color-black"]`);
 const labelWhite = document.querySelector(`label[for="pen-color-white"]`);
@@ -355,6 +356,8 @@ backgroundColorPicker.addEventListener("change", () => {
 
     labelWhite.style.backgroundColor = newBgColor;
     painter.changeBackgroundColor(newBgColor);
+
+    if (radioWhite.checked) painter.useBackgroundColor();
 });
 
 // EXPORTING TO AN IMAGE FILE
