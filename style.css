@@ -90,6 +90,10 @@ label[for="pen-color-white"] {
     background-color: white;
 }
 
+label[for="pen-color-custom"] {
+    background-color: black;
+}
+
 .control {
     /* Child flex attributes */
     flex: 1;
