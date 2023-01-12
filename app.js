@@ -3,6 +3,7 @@
 const makePainter = () => {
     let penColor = "rgb(0, 0, 0)";
     let random = false;
+    let backgroundColor = "rgb(255, 255, 255)";
 
     return {
 	setRandom () {
@@ -26,6 +27,14 @@ const makePainter = () => {
 
 	changePenColor (newColor = "rgb(0, 0, 0)") {
 	    penColor = newColor;
+	},
+
+	changeBackgroundColor (newBackgroundColor = "rgb(255, 255, 255)") {
+	    backgroundColor = newBackgroundColor;
+	},
+
+	useBackgroundColor () {
+	    penColor = backgroundColor;
 	}
     };
 };
@@ -288,7 +297,7 @@ function resetLabelSettings () {
 }
 
 labelBlack.addEventListener("click", () => painter.changePenColor("rgb(0, 0, 0)"));
-labelWhite.addEventListener("click", () => painter.changePenColor("rgb(255, 255, 255)"));
+labelWhite.addEventListener("click", painter.useBackgroundColor);
 
 labelLuckyPicker.addEventListener("click", () => {
     // https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-11.php
