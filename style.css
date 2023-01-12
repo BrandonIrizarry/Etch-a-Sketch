@@ -117,6 +117,14 @@ label[for="pen-color-custom"] {
     background-color: #5a009c;
 }
 
+#change-background-color {
+    background-color: #9c5a00;
+}
+
+#change-foreground-color {
+    background-color: #5a9c00;
+}
+
 .control > span {
     padding: 10px;
 }
