@@ -85,6 +85,14 @@ label, .aux {
     align-items: center;
 }
 
+.aux {
+    flex-wrap: wrap;
+}
+
+label[for="pen-color-psychedelic"] {
+    flex: 100%;
+}
+
 label[for="pen-color-white"] {
     color: black;
     background-color: white;
@@ -123,6 +131,10 @@ label[for="pen-color-custom"] {
 
 #change-foreground-color {
     background-color: #5a9c00;
+}
+
+span {
+    font-size: 0.7rem;
 }
 
 .control > span {
@@ -183,9 +195,14 @@ span {
 	display: grid;
 	grid-template-areas:
 	    "header section"
+	    "main section"
+	    "main section"
+	    "main section"
+	    "main section"
+	    "main section"
+	    "main section"
 	    "main section";
 	grid-auto-columns: 1fr;
-	grid-template-rows: 1fr 5fr;
     }
 
     footer {
@@ -195,7 +212,6 @@ span {
     .control-panel {
 	flex: 1;
 	padding: 0;
-	flex-direction: column;
 	margin: 0 auto;
     }
 }
@@ -231,5 +247,9 @@ span {
 
     label[for="pen-color-psychedelic"], .aux {
 	grid-column: 1 / span 2;
+    }
+
+    span {
+	font-size: 1rem;
     }
 }
