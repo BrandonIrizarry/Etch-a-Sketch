@@ -155,13 +155,16 @@ profile.
     left out.
 
 * Known bugs
-** 'change' event on color picker buggy 
+** DONE 'change' event on color picker buggy
+*** Description
    Whenever this button is checked, the color should be used, and all
    corresponding effects enabled. Right now, if I simply go back to
    the current custom color setting (which my browsers will let me
    do), since a 'change' event isn't being fired, the old pen setting
    is still being used, and the button's background color doesn't
    change to the selected color.
+*** Fix
+    Use a /separate/ widget to select the foreground color.
 
 * Exporting
 ** PPM File Format
@@ -186,3 +189,11 @@ The following incantation works:
 ffmpeg -i image.ppm out.png
 
 See [[https://superuser.com/questions/1722381/convert-ppm-to-png][this Superuser Stack Exchange post]].
+
+
+* Possible Improvements
+** Color registers?
+   Perhaps the user wants to save the color selected by "I'm feeling
+   lucky"? One possibility is to transfer this to the current custom
+   color setting. Another possibility is to let the user save various
+   colors in panel widgets (current ~lucky~, current ~custom~).
