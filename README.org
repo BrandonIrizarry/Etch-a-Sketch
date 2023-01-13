@@ -30,8 +30,8 @@
         reflect the currently active background color. This stays in
         effect regardless of whether this is the current pen setting.
     + Custom
-      - Launches an HTML5 color-picker. Use it to select the desired pen
-	color.
+      - Sets the pen color to the current persistent custom color; see
+        "Select custom foreground color" below.
     + "I'm feeling lucky"
       - Sets the pen color to a (single) random color. This is different
 	from "psychedelic" (see below).
@@ -61,6 +61,10 @@
         locates all cells with that particular color, and changes them
         accordingly.
       - There is no concept of layers in this project.
+    + Select custom foreground color
+      - Select a new pen color, using an HTML5 color picker. This
+        choice still has to be activated using the "Use selected
+        custom foreground color" button.
 
 ** A Note on Mobile Devices
    The site is designed to be usable both on desktop and mobile
