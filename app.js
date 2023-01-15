@@ -292,7 +292,6 @@ window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
 const radioColorCustom = document.querySelector("#pen-color-custom");
 const radioWhite = document.querySelector("#pen-color-white");
 
-const labelBlack = document.querySelector(`label[for="pen-color-black"]`);
 const labelWhite = document.querySelector(`label[for="pen-color-white"]`);
 const labelColorCustom = document.querySelector(`label[for="pen-color-custom"]`);
 const labelLuckyPicker = document.querySelector(`label[for="pen-color-fixed-random"]`);
@@ -321,7 +320,6 @@ function resetLabelSettings () {
     labelColorCustom.style.backgroundColor = painter.getCustomForegroundColor();
 }
 
-labelBlack.addEventListener("click", () => painter.changePenColor("rgb(0, 0, 0)"));
 labelWhite.addEventListener("click", painter.useBackgroundColor);
 labelColorCustom.addEventListener("click", painter.useCustomForegroundColor);
 
@@ -478,4 +476,4 @@ exportButton.addEventListener("click", () => {
 resetGrid();
 
 // Check 'black' in the Control Panel
-document.querySelector("#pen-color-black").checked = true;
+document.querySelector("#pen-color-custom").checked = true;
