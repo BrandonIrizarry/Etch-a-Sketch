@@ -307,7 +307,8 @@ function resetLabelSettings () {
     painter.clearRandom();
 
     // reset background
-    const initialLabelBackgroundColor = getComputedStyle(labelBlack).backgroundColor;
+    const initialLabelBackgroundColor = getComputedStyle(document.documentElement)
+	  .getPropertyValue("--default-label-bg-color");
 
     allLabels.forEach(label => {
 	label.style.background = ""; // for when "psychedelic" had been selected
