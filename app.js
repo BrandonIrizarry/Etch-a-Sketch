@@ -8,7 +8,7 @@ const makePainter = () => {
     let random = false;
     let backgroundColor = "rgb(255, 255, 255)";
     let customForegroundColor = "rgb(0, 0, 0)";
-    let paint = usePen; // holds current painter function (usePen, lighten, or darken)
+    let paintFn = usePen;
 
     function setRandom () {
 	random = true;
@@ -16,6 +16,10 @@ const makePainter = () => {
 
     function clearRandom () {
 	random = false;
+    }
+
+    function paint(DOMelement) {
+	paintFn(DOMelement);
     }
 
     // Default 'paint' function
@@ -73,12 +77,14 @@ const makePainter = () => {
 	return customForegroundColor;
     }
 
-    function setPainter (paintFn) {
-	paint = paintFn;
+    function setPainter (newPaintFn) {
+	paintFn = newPaintFn;
     }
 
     return {
 	lighten, // temporary export
+	usePen, // temporary export
+	setPainter,
 	setRandom,
 	clearRandom,
 	paint,
@@ -384,10 +390,11 @@ labelPsychedelic.addEventListener("click", () => {
 
 // Lightener/darkener
 labelLightenerDarkener.addEventListener("click", () => {
-    if (checkboxLightenerDarkener.checked)
-	painter.setRandom();
-    else
-	painter.clearRandom();
+    if (checkboxLightenerDarkener.checked) {
+	painter.setPainter(painter.usePen);
+    } else {
+	painter.setPainter(painter.lighten);
+    }
 });
 
 // RESETTING THE GRID
