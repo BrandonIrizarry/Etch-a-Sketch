@@ -21,26 +21,32 @@
     There is a control panel that controls various pen settings, as well
     as a few other actions.
 
-    + Black
-      - Sets the pen color to black.
-    + Use Background Color
+    + Use foreground color
+      - Sets the pen color to the current persistent custom color; see
+        "Select foreground color" below.
+      - The initial pen color is black.
+    + Use background color
+      - (/Credit to Discord user Dr1ni for suggesting that I implement this./)
       - Sets the pen color to the current background color. You can
         use this setting as an "eraser" feature.
       - Note that the background color of this button changes to
         reflect the currently active background color. This stays in
         effect regardless of whether this is the current pen setting.
-    + Custom
-      - Sets the pen color to the current persistent custom color; see
-        "Select custom foreground color" below.
     + "I'm feeling lucky"
       - Sets the pen color to a (single) random color. This is different
 	from "psychedelic" (see below).
+    + Lighten/darken
+      - (/As suggested in the Extra Credit; also, credit to Discord user
+        BarryMoon for suggesting that I implement this./)
+      - Sets the pen to "lighten/darken" mode: instead of painting
+        with a given color, the current cell color is instead
+        lightened or darkened, according to a user-toggled switch
+        widget that appears only when this button is selected.
     + Psychedelic
       - (/As suggested in the Extra Credit/)
       - Changes the pen color as long as the pen is held down (either by
 	mouse or by touch/swiping), creating a rainbow effect as you draw.
-      - The page logo avails itself of this feature.
-
+	
     The preceding settings comprise a set of radio buttons, to enforce
     mutual exclusivity. There is also a set of auxiliary buttons, that
     control more general settings:
@@ -48,11 +54,11 @@
     + Clear all
       - Paints all cells with the current background color.
     + Export
-      - Arguably the /pièce de résistance/ of this project.
+      - Arguably the /pièce de résistance/ of this project!
       - Export the current drawing to the user's local filesystem as a PPM
 	image file (see [[https://en.wikipedia.org/wiki/Netpbm#PPM_example][this section]] of the Netpbm Wikipedia article).
-    + Change background color
-      - Changes the current background color, using an HTML5 color
+    + Select background color
+      - Select the current background color, using an HTML5 color
         picker.
       - The project implements the notion of a "background color" by
         arbitrarily designating a given color as such; any cells
@@ -61,10 +67,10 @@
         locates all cells with that particular color, and changes them
         accordingly.
       - There is no concept of layers in this project.
-    + Select custom foreground color
+    + Select foreground color
       - Select a new pen color, using an HTML5 color picker. This
-        choice still has to be activated using the "Use selected
-        custom foreground color" button.
+        choice still has to be activated using the "Use foreground
+        color" button.
 
 ** A Note on Mobile Devices
    The site is designed to be usable both on desktop and mobile

@@ -197,3 +197,6 @@ See [[https://superuser.com/questions/1722381/convert-ppm-to-png][this Superuser
    lucky"? One possibility is to transfer this to the current custom
    color setting. Another possibility is to let the user save various
    colors in panel widgets (current ~lucky~, current ~custom~).
+
+* CSS Variables
+[[https://davidwalsh.name/css-variables-javascript][Getting/setting CSS Variables from JavaScript]]
