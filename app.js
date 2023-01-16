@@ -1,10 +1,14 @@
 "use strict";
 
 const makePainter = () => {
+    // For lightening/darkening
+    const SCALE_DELTA = 0.1;
+
     let penColor = "rgb(0, 0, 0)";
     let random = false;
     let backgroundColor = "rgb(255, 255, 255)";
     let customForegroundColor = "rgb(0, 0, 0)";
+    let paint = usePen; // holds current painter function (usePen, lighten, or darken)
 
     function setRandom () {
 	random = true;
@@ -24,6 +28,21 @@ const makePainter = () => {
 	}
 
 	DOMelement.style.backgroundColor = randomColor ?? penColor;
+    }
+
+    function lighten (DOMelement = document.body) {
+	const currentColor = DOMelement.style.backgroundColor;
+
+	const rgbRegexp = /.+\((\d+), (\d+), (\d+).+/;
+	const [_, red, green, blue] = currentColor.match(rgbRegexp);
+
+	const newRed = Math.round(red * (1 + SCALE_DELTA));
+	const newGreen = Math.round(green * (1 + SCALE_DELTA));
+	const newBlue = Math.round(blue * (1 + SCALE_DELTA));
+
+	const newColor = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
+
+	DOMelement.style.backgroundColor = newColor;
     }
 
     function changePenColor (newColor = "rgb(0, 0, 0)") {
@@ -54,10 +73,12 @@ const makePainter = () => {
 	return customForegroundColor;
     }
 
-    // Initialize paint function to 'usePen'
-    let paint = usePen;
+    function setPainter (paintFn) {
+	paint = paintFn;
+    }
 
     return {
+	lighten, // temporary export
 	setRandom,
 	clearRandom,
 	paint,
