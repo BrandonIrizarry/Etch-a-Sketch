@@ -14,7 +14,8 @@ const makePainter = () => {
 	random = false;
     }
 
-    function paint (DOMelement = document.body) {
+    // Default 'paint' function
+    function usePen (DOMelement = document.body) {
 	let randomColor = null;
 
 	if (random) {
@@ -52,6 +53,9 @@ const makePainter = () => {
     function getCustomForegroundColor () {
 	return customForegroundColor;
     }
+
+    // Initialize paint function to 'usePen'
+    let paint = usePen;
 
     return {
 	setRandom,
