@@ -6,53 +6,64 @@ const makePainter = () => {
     let backgroundColor = "rgb(255, 255, 255)";
     let customForegroundColor = "rgb(0, 0, 0)";
 
-    return {
-	setRandom () {
-	    random = true;
-	},
+    function setRandom () {
+	random = true;
+    }
 
-	clearRandom () {
-	    random = false;
-	},
+    function clearRandom () {
+	random = false;
+    }
 
-	paint (DOMelement = document.body) {
-	    let randomColor = null;
+    function paint (DOMelement = document.body) {
+	let randomColor = null;
 
-	    if (random) {
-		const randomColorValue = Math.floor(Math.random() * (2 ** 24 + 1)).toString(16);
-		randomColor = `#${randomColorValue}`;
-	    }
-
-	    DOMelement.style.backgroundColor = randomColor ?? penColor;
-	},
-
-	changePenColor (newColor = "rgb(0, 0, 0)") {
-	    penColor = newColor;
-	},
-
-	changeBackgroundColor (newBackgroundColor = "rgb(255, 255, 255)") {
-	    backgroundColor = newBackgroundColor;
-	},
-
-	useBackgroundColor () {
-	    penColor = backgroundColor;
-	},
-
-	getBackgroundColor () {
-	    return backgroundColor;
-	},
-
-	changeCustomForegroundColor (newForegroundColor = "rgb(0, 0, 0)") {
-	    customForegroundColor = newForegroundColor;
-	},
-
-	useCustomForegroundColor () {
-	    penColor = customForegroundColor;
-	},
-
-	getCustomForegroundColor () {
-	    return customForegroundColor;
+	if (random) {
+	    const randomColorValue = Math.floor(Math.random() * (2 ** 24 + 1)).toString(16);
+	    randomColor = `#${randomColorValue}`;
 	}
+
+	DOMelement.style.backgroundColor = randomColor ?? penColor;
+    }
+
+    function changePenColor (newColor = "rgb(0, 0, 0)") {
+	penColor = newColor;
+    }
+
+    function changeBackgroundColor (newBackgroundColor = "rgb(255, 255, 255)") {
+	backgroundColor = newBackgroundColor;
+    }
+
+    function useBackgroundColor () {
+	penColor = backgroundColor;
+    }
+
+    function getBackgroundColor () {
+	return backgroundColor;
+    }
+
+    function changeCustomForegroundColor (newForegroundColor = "rgb(0, 0, 0)") {
+	customForegroundColor = newForegroundColor;
+    }
+
+    function useCustomForegroundColor () {
+	penColor = customForegroundColor;
+    }
+
+    function getCustomForegroundColor () {
+	return customForegroundColor;
+    }
+
+    return {
+	setRandom,
+	clearRandom,
+	paint,
+	changePenColor,
+	changeBackgroundColor,
+	useBackgroundColor,
+	getBackgroundColor,
+	changeCustomForegroundColor,
+	useCustomForegroundColor,
+	getCustomForegroundColor,
     };
 };
 
