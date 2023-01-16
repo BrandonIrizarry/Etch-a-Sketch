@@ -50,7 +50,18 @@ const makePainter = () => {
 	    const currentColor = DOMelement.style.backgroundColor;
 
 	    const rgbRegexp = /.+\((\d+), (\d+), (\d+).+/;
-	    const [_, red, green, blue] = currentColor.match(rgbRegexp);
+	    let [_, red, green, blue] = currentColor.match(rgbRegexp);
+
+	    // A note on 'currentColor' being black: since
+	    // multiplication is used to scale values upward, any
+	    // lightening operation on all-zero values has to be
+	    // bootstrapped with something small, but not too small
+	    // that rounding should annihilate it
+	    if (!darken && red == 0 && green == 0 && blue == 0) {
+		red = 1 / scaleDelta;
+		green = 1 / scaleDelta;
+		blue = 1 / scaleDelta;
+	    }
 
 	    const newRed = Math.round(red * (1 + scaleDelta));
 	    const newGreen = Math.round(green * (1 + scaleDelta));
