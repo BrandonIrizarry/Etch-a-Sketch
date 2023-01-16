@@ -367,7 +367,7 @@ function resetLabelSettings () {
     // reset psychedelic painting
     painter.clearRandom();
 
-    // reset background
+    // reset label backgrounds
     const initialLabelBackgroundColor = getComputedStyle(document.documentElement)
 	  .getPropertyValue("--default-label-bg-color");
 
