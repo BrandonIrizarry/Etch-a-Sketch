@@ -346,6 +346,14 @@ labelPsychedelic.addEventListener("click", () => {
     labelPsychedelic.style.background = "linear-gradient(135deg, red 0%, orange 25%, yellow 50%, green 75%, blue 100%)";
 });
 
+// Lightener/darkener
+labelLightenerDarkener.addEventListener("click", () => {
+    if (checkboxLightenerDarkener.checked)
+	painter.setRandom();
+    else
+	painter.clearRandom();
+});
+
 // RESETTING THE GRID
 
 function resetGrid () {
