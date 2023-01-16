@@ -99,6 +99,7 @@ const makePainter = () => {
     return {
 	lighten,
 	darken,
+	usePen,
 	setPainter,
 	setRandom,
 	clearRandom,
