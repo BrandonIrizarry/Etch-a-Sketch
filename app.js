@@ -298,6 +298,8 @@ const labelLuckyPicker = document.querySelector(`label[for="pen-color-fixed-rand
 const labelPsychedelic = document.querySelector(`label[for="pen-color-psychedelic"]`);
 
 // Lightener/darkener
+const labelLightenerDarkener = document.querySelector(`label[for="pen-color-lighten-darken"]`);
+const radioLightenerDarkener = document.querySelector("#pen-color-lighten-darken");
 const checkboxLightenerDarkener = document.querySelector(".switch > input");
 
 // Catch all labels here, in case
