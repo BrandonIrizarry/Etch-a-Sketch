@@ -35,10 +35,11 @@ const makePainter = () => {
     }
 
     function makeLightnessAdjuster (darken=false) {
-	// Return either a lightener or a darkener. This lets us use
-	// 'lighten' and 'darken' as functions directly in event
+	// Return either a lightener or a darkener. This lets us
+	// (potentially) use 'lighten' and 'darken' as functions directly in event
 	// listeners without having to introduce an intermediate arrow
 	// function to accomodate passing-in the 'darken' parameter.
+	// They also read better this way.
 	return DOMelement => {
 	    let scaleDelta = SCALE_DELTA;
 
