@@ -249,6 +249,15 @@ input:checked + .groove:before {
   transform: translateX(26px);
 }
 
+/* Hide the lighten/darken widget when relevant button is unchecked  */
+label[for="pen-color-lighten-darken"] > input ~ .switch  {
+    display: none;
+}
+
+label[for="pen-color-lighten-darken"] > input:checked ~ .switch  {
+    display: inherit;
+}
+
 /* Rounded sliders */
 .groove.round {
   border-radius: 34px;
