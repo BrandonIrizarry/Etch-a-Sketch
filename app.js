@@ -372,6 +372,9 @@ function resetLabelSettings () {
     const initialLabelBackgroundColor = getComputedStyle(document.documentElement)
 	  .getPropertyValue("--default-label-bg-color");
 
+    // reset painter function to 'usePen'
+    painter.setPainter(painter.usePen);
+
     allLabels.forEach(label => {
 	label.style.background = ""; // for when "psychedelic" had been selected
 	label.style.backgroundColor = initialLabelBackgroundColor;
