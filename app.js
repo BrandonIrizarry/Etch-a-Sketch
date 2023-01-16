@@ -34,20 +34,32 @@ const makePainter = () => {
 	DOMelement.style.backgroundColor = randomColor ?? penColor;
     }
 
-    function lighten (DOMelement) {
-	const currentColor = DOMelement.style.backgroundColor;
+    function makeLightnessAdjuster (darken=false) {
+	// Return either a lightener or a darkener
+	return DOMelement => {
+	    let scaleDelta = SCALE_DELTA;
 
-	const rgbRegexp = /.+\((\d+), (\d+), (\d+).+/;
-	const [_, red, green, blue] = currentColor.match(rgbRegexp);
+	    if (darken) {
+		scaleDelta *= -1;
+	    }
 
-	const newRed = Math.round(red * (1 + SCALE_DELTA));
-	const newGreen = Math.round(green * (1 + SCALE_DELTA));
-	const newBlue = Math.round(blue * (1 + SCALE_DELTA));
+	    const currentColor = DOMelement.style.backgroundColor;
 
-	const newColor = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
+	    const rgbRegexp = /.+\((\d+), (\d+), (\d+).+/;
+	    const [_, red, green, blue] = currentColor.match(rgbRegexp);
 
-	DOMelement.style.backgroundColor = newColor;
+	    const newRed = Math.round(red * (1 + scaleDelta));
+	    const newGreen = Math.round(green * (1 + scaleDelta));
+	    const newBlue = Math.round(blue * (1 + scaleDelta));
+
+	    const newColor = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
+
+	    DOMelement.style.backgroundColor = newColor;
+	};
     }
+
+    const lighten = makeLightnessAdjuster();
+    const darken = makeLightnessAdjuster(true);
 
     function changePenColor (newColor = "rgb(0, 0, 0)") {
 	penColor = newColor;
@@ -82,8 +94,8 @@ const makePainter = () => {
     }
 
     return {
-	lighten, // temporary export
-	usePen, // temporary export
+	lighten,
+	darken,
 	setPainter,
 	setRandom,
 	clearRandom,
@@ -391,7 +403,7 @@ labelPsychedelic.addEventListener("click", () => {
 // Lightener/darkener
 labelLightenerDarkener.addEventListener("click", () => {
     if (checkboxLightenerDarkener.checked) {
-	painter.setPainter(painter.usePen);
+	painter.setPainter(painter.darken);
     } else {
 	painter.setPainter(painter.lighten);
     }
