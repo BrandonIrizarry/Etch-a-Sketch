@@ -297,6 +297,9 @@ const labelColorCustom = document.querySelector(`label[for="pen-color-custom"]`)
 const labelLuckyPicker = document.querySelector(`label[for="pen-color-fixed-random"]`);
 const labelPsychedelic = document.querySelector(`label[for="pen-color-psychedelic"]`);
 
+// Lightener/darkener
+const checkboxLightenerDarkener = document.querySelector(".switch > input");
+
 // Catch all labels here, in case
 const allLabels = document.querySelectorAll("label");
 allLabels.forEach(label => label.addEventListener("click", resetLabelSettings));
