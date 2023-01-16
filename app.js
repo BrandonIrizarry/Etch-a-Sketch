@@ -19,7 +19,7 @@ const makePainter = () => {
     }
 
     // Default 'paint' function
-    function usePen (DOMelement = document.body) {
+    function usePen (DOMelement) {
 	let randomColor = null;
 
 	if (random) {
@@ -30,7 +30,7 @@ const makePainter = () => {
 	DOMelement.style.backgroundColor = randomColor ?? penColor;
     }
 
-    function lighten (DOMelement = document.body) {
+    function lighten (DOMelement) {
 	const currentColor = DOMelement.style.backgroundColor;
 
 	const rgbRegexp = /.+\((\d+), (\d+), (\d+).+/;
